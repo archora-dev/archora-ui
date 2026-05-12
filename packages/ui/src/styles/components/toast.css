@@ -1,0 +1,50 @@
+.arch-toast-viewport {
+  position: fixed;
+  z-index: var(--arch-z-toast);
+  inset-block-end: var(--arch-space-6);
+  inset-inline-end: var(--arch-space-6);
+  display: grid;
+  gap: var(--arch-space-3);
+  width: min(24rem, calc(100vw - var(--arch-space-6) * 2));
+}
+
+.arch-toast {
+  display: grid;
+  gap: var(--arch-space-1);
+  border: 1px solid var(--arch-toast-border);
+  border-radius: var(--arch-radius-lg);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  padding: var(--arch-space-4);
+  box-shadow: var(--arch-shadow-lg);
+}
+
+.arch-toast__title {
+  color: var(--arch-toast-title);
+  font-weight: 700;
+}
+
+.arch-toast__description {
+  color: var(--arch-color-fg-muted);
+  line-height: var(--arch-line-normal);
+}
+
+.arch-toast--info {
+  --arch-toast-border: color-mix(in srgb, var(--arch-color-info), transparent 58%);
+  --arch-toast-title: var(--arch-color-info);
+}
+
+.arch-toast--success {
+  --arch-toast-border: color-mix(in srgb, var(--arch-color-success), transparent 58%);
+  --arch-toast-title: var(--arch-color-success);
+}
+
+.arch-toast--warning {
+  --arch-toast-border: color-mix(in srgb, var(--arch-color-warning), transparent 58%);
+  --arch-toast-title: var(--arch-color-warning);
+}
+
+.arch-toast--danger {
+  --arch-toast-border: color-mix(in srgb, var(--arch-color-danger), transparent 58%);
+  --arch-toast-title: var(--arch-color-danger);
+}

@@ -1,0 +1,56 @@
+.arch-card {
+  display: grid;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--arch-card-border);
+  border-radius: var(--arch-radius-lg);
+  background: var(--arch-card-bg);
+  color: var(--arch-color-fg);
+  box-shadow: var(--arch-card-shadow);
+}
+
+.arch-card--elevated {
+  --arch-card-bg: var(--arch-color-bg-elevated);
+  --arch-card-border: var(--arch-color-border);
+  --arch-card-shadow: var(--arch-shadow-md);
+}
+
+.arch-card--outlined {
+  --arch-card-bg: transparent;
+  --arch-card-border: var(--arch-color-border-strong);
+  --arch-card-shadow: none;
+}
+
+.arch-card--subtle {
+  --arch-card-bg: var(--arch-color-bg-subtle);
+  --arch-card-border: var(--arch-color-border);
+  --arch-card-shadow: none;
+}
+
+.arch-card--none {
+  --arch-card-padding: 0;
+}
+
+.arch-card--sm {
+  --arch-card-padding: var(--arch-space-4);
+}
+
+.arch-card--md {
+  --arch-card-padding: var(--arch-space-5);
+}
+
+.arch-card--lg {
+  --arch-card-padding: var(--arch-space-6);
+}
+
+.arch-card__header,
+.arch-card__body,
+.arch-card__footer {
+  min-width: 0;
+  padding: var(--arch-card-padding);
+}
+
+.arch-card__header + .arch-card__body,
+.arch-card__body + .arch-card__footer {
+  border-top: 1px solid var(--arch-color-border);
+}

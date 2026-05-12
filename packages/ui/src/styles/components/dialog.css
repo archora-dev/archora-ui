@@ -1,0 +1,62 @@
+.arch-dialog {
+  position: fixed;
+  z-index: var(--arch-z-dialog);
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--arch-space-6);
+}
+
+.arch-dialog__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(2 6 23 / 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.arch-dialog__content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--arch-space-5);
+  width: min(100%, 32rem);
+  border: 1px solid var(--arch-color-border-strong);
+  border-radius: var(--arch-radius-xl);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  padding: var(--arch-space-6);
+  box-shadow: var(--arch-shadow-lg);
+}
+
+.arch-dialog__content:focus {
+  outline: 0;
+}
+
+.arch-dialog__trigger {
+  width: fit-content;
+}
+
+.arch-dialog__header {
+  display: grid;
+  gap: var(--arch-space-2);
+}
+
+.arch-dialog__title {
+  margin: 0;
+  color: var(--arch-color-fg);
+  font-size: 1.125rem;
+  line-height: var(--arch-line-tight);
+}
+
+.arch-dialog__description {
+  margin: 0;
+  color: var(--arch-color-fg-muted);
+  line-height: var(--arch-line-normal);
+}
+
+.arch-dialog__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--arch-space-3);
+  justify-content: flex-end;
+}

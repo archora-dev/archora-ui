@@ -1,0 +1,46 @@
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --arch-color-bg: #020617;
+  --arch-color-bg-subtle: #0f172a;
+  --arch-color-bg-elevated: #111827;
+  --arch-color-fg: #f8fafc;
+  --arch-color-fg-muted: #94a3b8;
+  --arch-color-border: rgb(148 163 184 / 0.22);
+  --arch-color-border-strong: rgb(203 213 225 / 0.34);
+  --arch-color-primary: #8b5cf6;
+  --arch-color-primary-fg: #ffffff;
+  --arch-color-accent: #22d3ee;
+  --arch-color-accent-fg: #0f172a;
+  --arch-color-danger: #ef4444;
+  --arch-color-danger-fg: #ffffff;
+  --arch-color-success: #10b981;
+  --arch-color-success-fg: #ffffff;
+  --arch-color-warning: #f59e0b;
+  --arch-color-warning-fg: #0f172a;
+  --arch-color-info: #06b6d4;
+  --arch-color-info-fg: #ffffff;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --arch-color-bg: #f8fafc;
+  --arch-color-bg-subtle: #f1f5f9;
+  --arch-color-bg-elevated: #ffffff;
+  --arch-color-fg: #0f172a;
+  --arch-color-fg-muted: #64748b;
+  --arch-color-border: rgb(15 23 42 / 0.12);
+  --arch-color-border-strong: rgb(15 23 42 / 0.22);
+  --arch-color-primary: #7c3aed;
+  --arch-color-primary-fg: #ffffff;
+  --arch-color-accent: #0891b2;
+  --arch-color-accent-fg: #ffffff;
+  --arch-color-danger: #dc2626;
+  --arch-color-danger-fg: #ffffff;
+  --arch-color-success: #059669;
+  --arch-color-success-fg: #ffffff;
+  --arch-color-warning: #d97706;
+  --arch-color-warning-fg: #0f172a;
+  --arch-color-info: #0891b2;
+  --arch-color-info-fg: #ffffff;
+}

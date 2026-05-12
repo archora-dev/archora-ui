@@ -1,0 +1,32 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:where(html) {
+  color-scheme: dark light;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+:where(body) {
+  margin: 0;
+  min-width: 320px;
+  background: var(--arch-color-bg);
+  color: var(--arch-color-fg);
+  font-family: var(--arch-font-sans);
+  line-height: var(--arch-line-normal);
+}
+
+:where(button, input, textarea, select) {
+  font: inherit;
+}
+
+:where(button) {
+  cursor: pointer;
+}
+
+:where(button:disabled, [aria-disabled="true"]) {
+  cursor: not-allowed;
+}

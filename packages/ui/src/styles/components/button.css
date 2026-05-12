@@ -1,0 +1,146 @@
+.arch-button {
+  --arch-button-bg: var(--arch-color-primary);
+  --arch-button-border: transparent;
+  --arch-button-color: var(--arch-color-primary-fg);
+  --arch-button-bg-hover: color-mix(in srgb, var(--arch-button-bg), white 10%);
+  --arch-button-bg-active: color-mix(in srgb, var(--arch-button-bg), black 12%);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--arch-space-2);
+  width: fit-content;
+  min-width: max-content;
+  border: 1px solid var(--arch-button-border);
+  border-radius: var(--arch-radius-md);
+  background: var(--arch-button-bg);
+  color: var(--arch-button-color);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: var(--arch-line-tight);
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  vertical-align: middle;
+  box-shadow: var(--arch-button-shadow, none);
+  transition:
+    background-color var(--arch-duration-fast) var(--arch-ease-standard),
+    border-color var(--arch-duration-fast) var(--arch-ease-standard),
+    color var(--arch-duration-fast) var(--arch-ease-standard),
+    box-shadow var(--arch-duration-fast) var(--arch-ease-standard),
+    transform var(--arch-duration-fast) var(--arch-ease-standard);
+}
+
+.arch-button:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}
+
+.arch-button:disabled,
+.arch-button--loading {
+  opacity: 0.56;
+}
+
+.arch-button--loading {
+  cursor: wait;
+}
+
+.arch-button:hover:not(:disabled, .arch-button--loading) {
+  background: var(--arch-button-bg-hover);
+}
+
+.arch-button:active:not(:disabled, .arch-button--loading) {
+  background: var(--arch-button-bg-active);
+  transform: translateY(1px);
+}
+
+.arch-button--block {
+  width: 100%;
+}
+
+.arch-button--sm {
+  min-height: 2rem;
+  padding: 0 var(--arch-space-3);
+  font-size: 0.875rem;
+}
+
+.arch-button--md {
+  min-height: 2.5rem;
+  padding: 0 var(--arch-space-4);
+  font-size: 0.9375rem;
+}
+
+.arch-button--lg {
+  min-height: 3rem;
+  padding: 0 var(--arch-space-5);
+  font-size: 1rem;
+}
+
+.arch-button--primary {
+  --arch-button-bg: var(--arch-color-primary);
+  --arch-button-color: var(--arch-color-primary-fg);
+  --arch-button-shadow: 0 10px 24px rgb(124 58 237 / 0.22);
+}
+
+.arch-button--secondary {
+  --arch-button-bg: var(--arch-color-bg-elevated);
+  --arch-button-border: var(--arch-color-border-strong);
+  --arch-button-color: var(--arch-color-fg);
+  --arch-button-bg-hover: var(--arch-color-bg-subtle);
+  --arch-button-bg-active: color-mix(in srgb, var(--arch-color-bg-subtle), black 8%);
+}
+
+.arch-button--ghost {
+  --arch-button-bg: transparent;
+  --arch-button-border: transparent;
+  --arch-button-color: var(--arch-color-fg);
+  --arch-button-bg-hover: var(--arch-color-bg-subtle);
+  --arch-button-bg-active: color-mix(in srgb, var(--arch-color-bg-subtle), black 8%);
+}
+
+.arch-button--danger {
+  --arch-button-bg: var(--arch-color-danger);
+  --arch-button-color: var(--arch-color-danger-fg);
+}
+
+.arch-button--success {
+  --arch-button-bg: var(--arch-color-success);
+  --arch-button-color: var(--arch-color-success-fg);
+}
+
+.arch-button--warning {
+  --arch-button-bg: var(--arch-color-warning);
+  --arch-button-color: var(--arch-color-warning-fg);
+}
+
+.arch-button__spinner {
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentcolor;
+  border-right-color: transparent;
+  border-radius: var(--arch-radius-full);
+  animation: arch-button-spin var(--arch-duration-slow) linear infinite;
+}
+
+.arch-button__content {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+@keyframes arch-button-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-button {
+    transition: none;
+  }
+
+  .arch-button__spinner {
+    animation: none;
+  }
+}

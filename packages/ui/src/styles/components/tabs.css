@@ -1,0 +1,67 @@
+.arch-tabs {
+  display: grid;
+  gap: var(--arch-space-4);
+  min-width: 0;
+}
+
+.arch-tabs__list {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-lg);
+  background: var(--arch-color-bg-subtle);
+  padding: var(--arch-space-1);
+}
+
+.arch-tabs__tab {
+  min-height: 2.25rem;
+  border: 0;
+  border-radius: var(--arch-radius-md);
+  background: transparent;
+  color: var(--arch-color-fg-muted);
+  padding: 0 var(--arch-space-4);
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color var(--arch-duration-fast) var(--arch-ease-standard),
+    color var(--arch-duration-fast) var(--arch-ease-standard),
+    box-shadow var(--arch-duration-fast) var(--arch-ease-standard);
+}
+
+.arch-tabs__tab:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.arch-tabs__tab--active {
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  box-shadow: var(--arch-shadow-sm);
+}
+
+.arch-tabs__tab:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}
+
+.arch-tabs__tab:hover:not(:disabled, .arch-tabs__tab--active) {
+  color: var(--arch-color-fg);
+}
+
+.arch-tabs__panel {
+  min-width: 0;
+  color: var(--arch-color-fg);
+}
+
+.arch-tabs__panel:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-tabs__tab {
+    transition: none;
+  }
+}

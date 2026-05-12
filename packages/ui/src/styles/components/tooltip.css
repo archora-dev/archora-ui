@@ -1,0 +1,47 @@
+.arch-tooltip {
+  position: relative;
+  display: inline-flex;
+  width: fit-content;
+}
+
+.arch-tooltip__trigger {
+  display: inline-flex;
+  width: fit-content;
+}
+
+.arch-tooltip__trigger:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}
+
+.arch-tooltip__content {
+  position: fixed;
+  z-index: var(--arch-z-popover);
+  width: max-content;
+  max-width: 16rem;
+  pointer-events: none;
+  border: 1px solid var(--arch-color-border-strong);
+  border-radius: var(--arch-radius-md);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  font-size: 0.8125rem;
+  line-height: var(--arch-line-normal);
+  padding: var(--arch-space-2) var(--arch-space-3);
+  box-shadow: var(--arch-shadow-lg);
+  opacity: 0;
+  transform: translateY(0.125rem);
+  transition:
+    opacity var(--arch-duration-fast) var(--arch-ease-standard),
+    transform var(--arch-duration-fast) var(--arch-ease-standard);
+}
+
+.arch-tooltip--open .arch-tooltip__content {
+  opacity: 1;
+  transform: translate(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-tooltip__content {
+    transition: none;
+  }
+}

@@ -1,0 +1,76 @@
+.arch-input {
+  display: inline-flex;
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-md);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  font-family: var(--arch-font-sans);
+  letter-spacing: 0;
+  line-height: var(--arch-line-tight);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.03);
+  transition:
+    background-color var(--arch-duration-fast) var(--arch-ease-standard),
+    border-color var(--arch-duration-fast) var(--arch-ease-standard),
+    box-shadow var(--arch-duration-fast) var(--arch-ease-standard);
+}
+
+.arch-input::placeholder {
+  color: var(--arch-color-fg-muted);
+  opacity: 0.72;
+}
+
+.arch-input:focus {
+  outline: 0;
+}
+
+.arch-input:focus-visible {
+  border-color: var(--arch-color-accent);
+  box-shadow: var(--arch-shadow-focus);
+}
+
+.arch-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.56;
+}
+
+.arch-input:read-only:not(:disabled) {
+  background: var(--arch-color-bg-subtle);
+}
+
+.arch-input:hover:not(:disabled, :read-only) {
+  border-color: var(--arch-color-border-strong);
+}
+
+.arch-input--invalid {
+  border-color: var(--arch-color-danger);
+}
+
+.arch-input--invalid:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--arch-color-danger), transparent 68%);
+}
+
+.arch-input--sm {
+  min-height: 2rem;
+  padding: 0 var(--arch-space-3);
+  font-size: 0.875rem;
+}
+
+.arch-input--md {
+  min-height: 2.5rem;
+  padding: 0 var(--arch-space-4);
+  font-size: 0.9375rem;
+}
+
+.arch-input--lg {
+  min-height: 3rem;
+  padding: 0 var(--arch-space-5);
+  font-size: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-input {
+    transition: none;
+  }
+}

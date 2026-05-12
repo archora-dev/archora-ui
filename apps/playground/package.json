@@ -1,0 +1,16 @@
+{
+  "name": "@archora/playground",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Histoire playground for Archora UI components.",
+  "type": "module",
+  "scripts": {
+    "dev": "histoire dev",
+    "build": "histoire build",
+    "typecheck": "vue-tsc -p tsconfig.json --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@archora/ui": "workspace:*"
+  }
+}

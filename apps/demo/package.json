@@ -1,0 +1,15 @@
+{
+  "name": "@archora/demo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Archora Console dashboard demo for the Archora UI public preview.",
+  "type": "module",
+  "scripts": {
+    "build": "vue-tsc -p tsconfig.json --noEmit && vite build",
+    "dev": "vite --host 0.0.0.0",
+    "typecheck": "vue-tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@archora/ui": "workspace:*"
+  }
+}
