@@ -1,0 +1,39 @@
+.arch-spinner {
+  display: inline-block;
+  border-style: solid;
+  border-color: currentcolor;
+  border-top-color: transparent;
+  border-radius: var(--arch-radius-full);
+  animation: arch-spinner-spin 800ms linear infinite;
+}
+
+.arch-spinner--sm {
+  width: 0.875rem;
+  height: 0.875rem;
+  border-width: 2px;
+}
+.arch-spinner--md {
+  width: 1.125rem;
+  height: 1.125rem;
+  border-width: 2px;
+}
+.arch-spinner--lg {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-width: 3px;
+}
+.arch-spinner--muted {
+  color: var(--arch-color-fg-muted);
+}
+.arch-spinner--accent {
+  color: var(--arch-color-accent);
+}
+.arch-spinner--primary {
+  color: var(--arch-color-primary);
+}
+
+@keyframes arch-spinner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,44 @@
+.arch-toolbar {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.arch-toolbar--horizontal {
+  flex-direction: row;
+}
+
+.arch-toolbar--vertical {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.arch-toolbar--wrap {
+  flex-wrap: wrap;
+}
+
+.arch-toolbar--compact {
+  gap: var(--arch-space-1);
+}
+
+.arch-toolbar--cozy {
+  gap: var(--arch-space-2);
+}
+
+.arch-toolbar--comfortable {
+  gap: var(--arch-space-3);
+}
+
+.arch-toolbar--subtle,
+.arch-toolbar--outlined {
+  padding: var(--arch-space-2);
+  border-radius: var(--arch-radius-lg);
+}
+
+.arch-toolbar--subtle {
+  background: var(--arch-color-bg-subtle);
+}
+
+.arch-toolbar--outlined {
+  border: 1px solid var(--arch-color-border);
+}

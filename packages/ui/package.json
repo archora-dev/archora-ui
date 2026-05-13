@@ -1,0 +1,32 @@
+{
+  "name": "@archora/ui",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Dark-first Vue 3 component library for premium dashboards and internal tools.",
+  "license": "MIT",
+  "main": "./dist/archora-ui.umd.cjs",
+  "module": "./dist/archora-ui.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/archora-ui.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node scripts/clean-dist.mjs && vue-tsc -p tsconfig.build.json --emitDeclarationOnly && vite build && node scripts/finalize-css.mjs",
+    "typecheck": "vue-tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "sideEffects": [
+    "./dist/styles.css",
+    "./src/styles/**/*.css"
+  ]
+}

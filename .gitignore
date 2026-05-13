@@ -1,0 +1,15 @@
+node_modules
+dist
+coverage
+.vite
+.histoire
+**/.vitepress/cache
+**/.vitepress/dist
+.turbo
+.idea
+.DS_Store
+.env
+.env.*
+.playwright
+*.tsbuildinfo
+*.log

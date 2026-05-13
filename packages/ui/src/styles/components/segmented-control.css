@@ -1,0 +1,79 @@
+.arch-segmented-control {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  gap: var(--arch-space-1);
+  width: fit-content;
+  padding: var(--arch-space-1);
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-lg);
+  background: var(--arch-color-bg-subtle);
+}
+
+.arch-segmented-control--full-width {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  width: 100%;
+}
+
+.arch-segmented-control__item {
+  border: 0;
+  border-radius: var(--arch-radius-md);
+  background: transparent;
+  color: var(--arch-color-fg-muted);
+  font-weight: 650;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--arch-duration-fast) var(--arch-ease-standard),
+    color var(--arch-duration-fast) var(--arch-ease-standard),
+    box-shadow var(--arch-duration-fast) var(--arch-ease-standard);
+}
+
+.arch-segmented-control--sm .arch-segmented-control__item {
+  min-height: 1.875rem;
+  padding: 0 var(--arch-space-3);
+  font-size: 0.8125rem;
+}
+
+.arch-segmented-control--md .arch-segmented-control__item {
+  min-height: 2.25rem;
+  padding: 0 var(--arch-space-4);
+  font-size: 0.875rem;
+}
+
+.arch-segmented-control--lg .arch-segmented-control__item {
+  min-height: 2.75rem;
+  padding: 0 var(--arch-space-5);
+  font-size: 0.9375rem;
+}
+
+.arch-segmented-control__item:hover:not(:disabled) {
+  color: var(--arch-color-fg);
+}
+
+.arch-segmented-control__item--active {
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  box-shadow: var(--arch-shadow-sm);
+}
+
+.arch-segmented-control--outline {
+  background: transparent;
+}
+
+.arch-segmented-control--ghost {
+  border-color: transparent;
+  background: transparent;
+}
+
+.arch-segmented-control__item:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}
+
+.arch-segmented-control__item:disabled,
+.arch-segmented-control--disabled .arch-segmented-control__item {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

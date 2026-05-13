@@ -1,0 +1,41 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:where(html) {
+  color-scheme: dark light;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+:where(body) {
+  margin: 0;
+  min-width: 320px;
+  background: var(--arch-color-bg);
+  color: var(--arch-color-fg);
+  font-family: var(--arch-font-sans);
+  font-size: 14px;
+  font-feature-settings:
+    "cv11" on,
+    "ss03" on,
+    "ss04" on,
+    "cv02" on;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: var(--arch-line-normal);
+}
+
+:where(button, input, textarea, select) {
+  font: inherit;
+}
+
+:where(button) {
+  cursor: pointer;
+}
+
+:where(button:disabled, [aria-disabled="true"]) {
+  cursor: not-allowed;
+}

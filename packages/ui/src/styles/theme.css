@@ -1,0 +1,135 @@
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Archora app styleguide palette: cool tech / Linear-like. */
+  --color-bg: #0a0c10;
+  --color-surface: #11141a;
+  --color-surface-2: #181c25;
+  --color-border: #232834;
+  --color-border-strong: #4a5160;
+
+  --color-text: #eef0f5;
+  --color-text-muted: #9aa0b0;
+  --color-text-subtle: #6b7283;
+
+  --color-primary: #7c6dff;
+  --color-primary-glow: #a8b5ff;
+  --color-primary-fg: #ffffff;
+
+  --color-success: #22c55e;
+  --color-warning: #ffb454;
+  --color-danger: #ff5d6c;
+  --color-info: #38bdf8;
+
+  --elev-1:
+    0 0 0 1px rgb(255 255 255 / 0.04) inset, 0 1px 0 rgb(255 255 255 / 0.05) inset,
+    0 1px 2px rgb(0 0 0 / 0.4);
+  --elev-2:
+    0 0 0 1px rgb(255 255 255 / 0.05) inset, 0 1px 0 rgb(255 255 255 / 0.06) inset,
+    0 1px 2px rgb(0 0 0 / 0.5), 0 8px 24px -8px rgb(0 0 0 / 0.6);
+  --elev-3:
+    0 0 0 1px rgb(255 255 255 / 0.06) inset, 0 1px 0 rgb(255 255 255 / 0.08) inset,
+    0 4px 8px rgb(0 0 0 / 0.5), 0 20px 40px -12px rgb(0 0 0 / 0.7);
+
+  --ring-focus: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-primary);
+
+  --arch-color-bg: var(--color-bg);
+  --arch-color-surface: var(--color-surface);
+  --arch-color-surface-2: var(--color-surface-2);
+  --arch-color-bg-subtle: var(--color-surface-2);
+  --arch-color-bg-elevated: var(--color-surface);
+  --arch-color-fg: var(--color-text);
+  --arch-color-fg-muted: var(--color-text-muted);
+  --arch-color-fg-subtle: var(--color-text-subtle);
+  --arch-color-text-primary: var(--color-text);
+  --arch-color-text-secondary: var(--color-text-muted);
+  --arch-color-text-muted: var(--color-text-muted);
+  --arch-color-text-subtle: var(--color-text-subtle);
+  --arch-color-border: var(--color-border);
+  --arch-color-border-strong: var(--color-border-strong);
+  --arch-color-primary: var(--color-primary);
+  --arch-color-primary-fg: var(--color-primary-fg);
+  --arch-color-primary-glow: rgb(124 109 255 / 0.34);
+  --arch-color-accent: var(--color-info);
+  --arch-color-accent-fg: #07101d;
+  --arch-color-accent-glow: rgb(56 189 248 / 0.28);
+  --arch-color-danger: var(--color-danger);
+  --arch-color-danger-fg: #ffffff;
+  --arch-color-success: var(--color-success);
+  --arch-color-success-fg: #ffffff;
+  --arch-color-warning: var(--color-warning);
+  --arch-color-warning-fg: #0a0c10;
+  --arch-color-info: var(--color-info);
+  --arch-color-info-fg: #07101d;
+
+  --arch-glass-bg: var(--color-surface);
+  --arch-glass-border: var(--color-border);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --color-bg: #fafbfc;
+  --color-surface: #ffffff;
+  --color-surface-2: #f4f5f8;
+  --color-border: #e3e5eb;
+  --color-border-strong: #a8acb8;
+
+  --color-text: #0f1115;
+  --color-text-muted: #4a4f5b;
+  --color-text-subtle: #8a8f9e;
+
+  --color-primary: #7c6dff;
+  --color-primary-glow: #a8b5ff;
+  --color-primary-fg: #ffffff;
+
+  --color-success: #16a34a;
+  --color-warning: #ffb454;
+  --color-danger: #ff5d6c;
+  --color-info: #0284c7;
+
+  --elev-1:
+    0 0 0 1px rgb(15 17 21 / 0.06) inset, 0 1px 0 rgb(255 255 255 / 0.6) inset,
+    0 1px 2px rgb(15 17 21 / 0.04);
+  --elev-2:
+    0 0 0 1px rgb(15 17 21 / 0.07) inset, 0 1px 0 rgb(255 255 255 / 0.7) inset,
+    0 1px 2px rgb(15 17 21 / 0.05), 0 8px 24px -8px rgb(15 17 21 / 0.08);
+  --elev-3:
+    0 0 0 1px rgb(15 17 21 / 0.08) inset, 0 1px 0 rgb(255 255 255 / 0.8) inset,
+    0 4px 8px rgb(15 17 21 / 0.08), 0 20px 40px -12px rgb(15 17 21 / 0.12);
+
+  --ring-focus: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-primary);
+
+  --arch-color-bg: var(--color-bg);
+  --arch-color-surface: var(--color-surface);
+  --arch-color-surface-2: var(--color-surface-2);
+  --arch-color-bg-subtle: var(--color-surface-2);
+  --arch-color-bg-elevated: var(--color-surface);
+  --arch-color-fg: var(--color-text);
+  --arch-color-fg-muted: var(--color-text-muted);
+  --arch-color-fg-subtle: var(--color-text-subtle);
+  --arch-color-text-primary: var(--color-text);
+  --arch-color-text-secondary: var(--color-text-muted);
+  --arch-color-text-muted: var(--color-text-muted);
+  --arch-color-text-subtle: var(--color-text-subtle);
+  --arch-color-border: var(--color-border);
+  --arch-color-border-strong: var(--color-border-strong);
+  --arch-color-primary: var(--color-primary);
+  --arch-color-primary-fg: var(--color-primary-fg);
+  --arch-color-primary-glow: rgb(124 109 255 / 0.2);
+  --arch-color-accent: var(--color-info);
+  --arch-color-accent-fg: #ffffff;
+  --arch-color-accent-glow: rgb(2 132 199 / 0.2);
+  --arch-color-danger: var(--color-danger);
+  --arch-color-danger-fg: #ffffff;
+  --arch-color-success: var(--color-success);
+  --arch-color-success-fg: #ffffff;
+  --arch-color-warning: var(--color-warning);
+  --arch-color-warning-fg: #0f1115;
+  --arch-color-info: var(--color-info);
+  --arch-color-info-fg: #ffffff;
+
+  --arch-glass-bg: var(--color-surface);
+  --arch-glass-border: var(--color-border);
+}

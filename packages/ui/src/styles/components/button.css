@@ -1,0 +1,181 @@
+.arch-button {
+  --arch-button-bg: var(--arch-color-primary);
+  --arch-button-border: transparent;
+  --arch-button-color: var(--arch-color-primary-fg);
+  --arch-button-glow: var(--arch-color-primary-glow);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--arch-space-2);
+  width: fit-content;
+  min-width: max-content;
+  border: 1px solid var(--arch-button-border);
+  border-radius: var(--arch-button-radius, var(--arch-radius-full));
+  background: var(--arch-button-bg);
+  color: var(--arch-button-color);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: var(--arch-line-tight);
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  vertical-align: middle;
+  cursor: pointer;
+
+  box-shadow:
+    var(--arch-button-shadow, none),
+    inset 0 1px 0 color-mix(in srgb, var(--arch-color-fg), transparent 90%);
+
+  transition:
+    background-color var(--arch-duration-normal) var(--arch-ease-emphasized),
+    border-color var(--arch-duration-normal) var(--arch-ease-emphasized),
+    color var(--arch-duration-normal) var(--arch-ease-emphasized),
+    box-shadow var(--arch-duration-normal) var(--arch-ease-emphasized),
+    transform var(--arch-duration-normal) var(--arch-ease-emphasized),
+    filter var(--arch-duration-normal) var(--arch-ease-emphasized);
+}
+
+.arch-button:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus), var(--arch-button-shadow, none);
+}
+
+.arch-button:disabled,
+.arch-button--loading {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.arch-button--loading {
+  cursor: wait;
+}
+
+.arch-button:hover:not(:disabled, .arch-button--loading) {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+  box-shadow:
+    var(--arch-button-shadow, none),
+    0 0 15px var(--arch-button-glow);
+}
+
+.arch-button:active:not(:disabled, .arch-button--loading) {
+  transform: scale(0.96);
+  filter: brightness(0.95);
+  transition-duration: var(--arch-duration-fast);
+}
+
+.arch-button--block {
+  width: 100%;
+}
+
+.arch-button--pill {
+  --arch-button-radius: var(--arch-radius-full);
+}
+
+.arch-button--rounded {
+  --arch-button-radius: var(--arch-radius-md);
+}
+
+.arch-button--square {
+  --arch-button-radius: var(--arch-radius-sm);
+}
+
+.arch-button--justify-start {
+  justify-content: flex-start;
+}
+
+.arch-button--justify-center {
+  justify-content: center;
+}
+
+.arch-button--justify-between {
+  justify-content: space-between;
+}
+
+.arch-button--sm {
+  min-height: 2.25rem;
+  padding: 0 var(--arch-space-4);
+  font-size: 0.875rem;
+}
+
+.arch-button--md {
+  min-height: 2.75rem;
+  padding: 0 var(--arch-space-5);
+  font-size: 0.9375rem;
+}
+
+.arch-button--lg {
+  min-height: 3.5rem;
+  padding: 0 var(--arch-space-6);
+  font-size: 1rem;
+}
+
+.arch-button--primary {
+  --arch-button-bg: linear-gradient(
+    135deg,
+    var(--arch-color-primary),
+    color-mix(in srgb, var(--arch-color-primary), var(--arch-color-accent) 20%)
+  );
+  --arch-button-color: var(--arch-color-primary-fg);
+  --arch-button-shadow: 0 8px 20px -4px var(--arch-color-primary-glow);
+}
+
+.arch-button--secondary {
+  --arch-button-bg: var(--arch-color-bg-subtle);
+  --arch-button-border: var(--arch-color-border);
+  --arch-button-color: var(--arch-color-fg);
+  --arch-button-glow: color-mix(in srgb, var(--arch-color-fg), transparent 92%);
+  backdrop-filter: blur(var(--arch-blur-md));
+}
+
+.arch-button--ghost {
+  --arch-button-bg: transparent;
+  --arch-button-border: transparent;
+  --arch-button-color: var(--arch-color-fg);
+  --arch-button-glow: var(--arch-color-primary-glow);
+}
+
+.arch-button--ghost:hover:not(:disabled, .arch-button--loading) {
+  background: var(--arch-color-bg-subtle);
+  transform: translateY(-1px);
+}
+
+.arch-button--danger {
+  --arch-button-bg: var(--arch-color-danger);
+  --arch-button-color: var(--arch-color-danger-fg);
+  --arch-button-glow: color-mix(in srgb, var(--arch-color-danger), transparent 70%);
+}
+
+.arch-button__spinner {
+  width: 1.2em;
+  height: 1.2em;
+  border: 2px solid currentcolor;
+  border-right-color: transparent;
+  border-radius: var(--arch-radius-full);
+  animation: arch-button-spin 0.8s var(--arch-ease-smooth) infinite;
+}
+
+.arch-button__content {
+  display: inline-flex;
+  align-items: center;
+  gap: inherit;
+}
+
+@keyframes arch-button-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-button {
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .arch-button__spinner {
+    animation: none;
+  }
+}

@@ -1,0 +1,51 @@
+.arch-file-upload {
+  display: grid;
+  gap: var(--arch-space-2);
+  border: 1px dashed var(--arch-color-border-strong);
+  border-radius: var(--arch-radius-lg);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  cursor: pointer;
+  padding: var(--arch-space-5);
+}
+
+.arch-file-upload--disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.arch-file-upload__label {
+  font-weight: 750;
+}
+
+.arch-file-upload__description,
+.arch-file-upload__file {
+  color: var(--arch-color-fg-muted);
+  font-size: 0.8125rem;
+}
+
+.arch-file-upload__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.arch-file-upload__dropzone {
+  display: inline-grid;
+  min-height: 2.25rem;
+  width: fit-content;
+  place-items: center;
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-full);
+  padding: 0 var(--arch-space-4);
+}
+
+.arch-file-upload__list {
+  display: grid;
+  gap: var(--arch-space-1);
+  margin: var(--arch-space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}

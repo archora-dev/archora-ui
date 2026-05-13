@@ -1,0 +1,81 @@
+.arch-data-table {
+  overflow: hidden;
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-lg);
+  background: var(--arch-color-bg-elevated);
+}
+
+.arch-data-table__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--arch-font-size-sm);
+}
+
+.arch-data-table th,
+.arch-data-table td {
+  border-block-end: 1px solid var(--arch-color-border);
+  padding: var(--arch-space-3) var(--arch-space-4);
+  text-align: start;
+  vertical-align: middle;
+}
+
+.arch-data-table th {
+  background: var(--arch-color-bg-subtle);
+  color: var(--arch-color-fg-muted);
+  font-weight: var(--arch-font-weight-medium);
+}
+
+.arch-data-table tbody tr:hover {
+  background: var(--arch-color-bg-subtle);
+}
+
+.arch-data-table tbody tr:last-child td {
+  border-block-end: 0;
+}
+
+.arch-data-table [data-align="center"] {
+  text-align: center;
+}
+
+.arch-data-table [data-align="end"] {
+  text-align: end;
+}
+
+.arch-data-table__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--arch-space-2);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+}
+
+.arch-data-table__sort:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}
+
+.arch-data-table__selection-cell {
+  width: 3rem;
+  text-align: center;
+}
+
+.arch-data-table__selection-cell .arch-checkbox {
+  display: inline-grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  place-items: center;
+  vertical-align: middle;
+}
+
+.arch-data-table__selection-cell .arch-checkbox__control {
+  margin: 0;
+}
+
+.arch-data-table__state {
+  color: var(--arch-color-fg-muted);
+  padding: var(--arch-space-6);
+  text-align: center;
+}

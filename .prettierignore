@@ -1,0 +1,7 @@
+node_modules
+dist
+coverage
+**/dist
+**/.histoire
+apps/docs/.vitepress/cache
+apps/docs/.vitepress/dist

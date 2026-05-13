@@ -1,0 +1,37 @@
+.arch-breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--arch-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.arch-breadcrumbs__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--arch-space-2);
+  color: var(--arch-color-fg-muted);
+  font-size: 0.8125rem;
+}
+
+.arch-breadcrumbs__item:not(:last-child)::after {
+  content: "/";
+  color: var(--arch-color-fg-muted);
+  opacity: 0.56;
+}
+
+.arch-breadcrumbs__link {
+  color: var(--arch-color-fg-muted);
+  text-decoration: none;
+}
+
+.arch-breadcrumbs__link:hover {
+  color: var(--arch-color-fg);
+}
+
+.arch-breadcrumbs__current {
+  color: var(--arch-color-fg);
+  font-weight: 700;
+}

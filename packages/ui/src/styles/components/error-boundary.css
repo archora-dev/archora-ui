@@ -1,0 +1,30 @@
+.arch-error-boundary {
+  display: grid;
+  justify-items: center;
+  gap: var(--arch-space-3);
+  border: 1px solid color-mix(in srgb, var(--arch-color-danger), transparent 50%);
+  border-radius: var(--arch-radius-lg);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  padding: var(--arch-space-8);
+  text-align: center;
+}
+
+.arch-error-boundary__title,
+.arch-error-boundary__message {
+  margin: 0;
+}
+
+.arch-error-boundary__message {
+  color: var(--arch-color-fg-muted);
+}
+
+.arch-error-boundary__retry {
+  min-height: 2.25rem;
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-full);
+  background: var(--arch-color-bg-subtle);
+  color: var(--arch-color-fg);
+  cursor: pointer;
+  padding: 0 var(--arch-space-4);
+}

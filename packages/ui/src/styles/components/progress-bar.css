@@ -1,0 +1,18 @@
+.arch-progress-bar {
+  position: relative;
+  height: 0.75rem;
+  width: 100%;
+  background: var(--arch-color-bg-subtle);
+  border-radius: var(--arch-radius-full);
+  overflow: hidden;
+  border: 1px solid var(--arch-color-border);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.arch-progress-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--arch-color-primary), var(--arch-color-accent));
+  border-radius: inherit;
+  transition: width var(--arch-duration-slow) var(--arch-ease-emphasized);
+  box-shadow: 0 0 10px var(--arch-color-primary-glow);
+}

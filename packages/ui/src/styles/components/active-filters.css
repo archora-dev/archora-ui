@@ -1,0 +1,86 @@
+.arch-active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+  user-select: none;
+}
+
+.arch-active-filters__item,
+.arch-active-filters__reset {
+  min-height: 1.75rem;
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-sm);
+  background: var(--arch-color-bg-subtle);
+  color: var(--arch-color-fg);
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0 0.55rem;
+  transition:
+    background-color var(--arch-duration-fast) var(--arch-ease-standard),
+    border-color var(--arch-duration-fast) var(--arch-ease-standard),
+    color var(--arch-duration-fast) var(--arch-ease-standard);
+}
+
+.arch-active-filters__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.arch-active-filters__text {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2rem;
+  white-space: nowrap;
+}
+
+.arch-active-filters__label {
+  color: var(--arch-color-fg-muted);
+  font-weight: 600;
+}
+
+.arch-active-filters__value {
+  color: var(--arch-color-fg);
+  font-weight: 650;
+}
+
+.arch-active-filters__remove {
+  display: inline-grid;
+  width: 0.95rem;
+  height: 0.95rem;
+  place-items: center;
+  margin-inline-start: 0.1rem;
+  border-radius: var(--arch-radius-full);
+  color: var(--arch-color-fg-subtle);
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+.arch-active-filters__reset {
+  border-color: transparent;
+  background: transparent;
+  color: var(--arch-color-fg-muted);
+}
+
+.arch-active-filters__item:hover {
+  border-color: var(--arch-color-border-strong);
+  background: var(--arch-color-bg-elevated);
+}
+
+.arch-active-filters__item:hover .arch-active-filters__remove {
+  background: var(--arch-color-bg-subtle);
+  color: var(--arch-color-fg);
+}
+
+.arch-active-filters__reset:hover {
+  color: var(--arch-color-fg);
+  background: var(--arch-color-bg-subtle);
+}
+
+.arch-active-filters__item:focus-visible,
+.arch-active-filters__reset:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}

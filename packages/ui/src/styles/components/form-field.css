@@ -1,0 +1,33 @@
+.arch-form-field {
+  display: grid;
+  gap: var(--arch-space-2);
+}
+
+.arch-form-field__label {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: var(--arch-space-1);
+  color: var(--arch-color-fg);
+  font-size: var(--arch-font-size-sm);
+  font-weight: var(--arch-font-weight-medium);
+}
+
+.arch-form-field__required {
+  color: var(--arch-color-danger);
+}
+
+.arch-form-field__description,
+.arch-form-field__error {
+  margin: 0;
+  font-size: var(--arch-font-size-sm);
+  line-height: var(--arch-line-height-normal);
+}
+
+.arch-form-field__description {
+  color: var(--arch-color-fg-muted);
+}
+
+.arch-form-field__error {
+  color: var(--arch-color-danger);
+}

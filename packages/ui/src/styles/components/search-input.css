@@ -1,0 +1,59 @@
+.arch-search-input {
+  position: relative;
+  display: grid;
+  width: 100%;
+}
+
+.arch-search-input input {
+  min-height: 2.5rem;
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-md);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  padding: 0 2.5rem;
+}
+
+.arch-search-input input:focus-visible {
+  outline: 0;
+  border-color: var(--arch-color-accent);
+  box-shadow: var(--arch-shadow-focus);
+}
+
+.arch-search-input__icon,
+.arch-search-input__clear {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arch-search-input__icon {
+  left: var(--arch-space-3);
+  color: var(--arch-color-fg-muted);
+}
+
+.arch-search-input__clear {
+  right: var(--arch-space-2);
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  place-items: center;
+  border: 0;
+  border-radius: var(--arch-radius-full);
+  background: transparent;
+  color: var(--arch-color-fg-muted);
+  cursor: pointer;
+}
+
+.arch-search-input__clear:hover {
+  background: var(--arch-color-bg-subtle);
+  color: var(--arch-color-fg);
+}
+
+.arch-search-input__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

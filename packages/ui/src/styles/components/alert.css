@@ -1,0 +1,45 @@
+.arch-alert {
+  display: grid;
+  gap: var(--arch-space-2);
+  min-width: 0;
+  border: 1px solid var(--arch-alert-border);
+  border-radius: var(--arch-radius-lg);
+  background: var(--arch-alert-bg);
+  color: var(--arch-color-fg);
+  padding: var(--arch-space-4);
+}
+
+.arch-alert__title {
+  color: var(--arch-alert-title);
+  font-weight: 700;
+  line-height: var(--arch-line-tight);
+}
+
+.arch-alert__content {
+  color: var(--arch-color-fg-muted);
+  line-height: var(--arch-line-normal);
+}
+
+.arch-alert--info {
+  --arch-alert-bg: color-mix(in srgb, var(--arch-color-info), transparent 90%);
+  --arch-alert-border: color-mix(in srgb, var(--arch-color-info), transparent 62%);
+  --arch-alert-title: var(--arch-color-info);
+}
+
+.arch-alert--success {
+  --arch-alert-bg: color-mix(in srgb, var(--arch-color-success), transparent 90%);
+  --arch-alert-border: color-mix(in srgb, var(--arch-color-success), transparent 62%);
+  --arch-alert-title: var(--arch-color-success);
+}
+
+.arch-alert--warning {
+  --arch-alert-bg: color-mix(in srgb, var(--arch-color-warning), transparent 90%);
+  --arch-alert-border: color-mix(in srgb, var(--arch-color-warning), transparent 62%);
+  --arch-alert-title: var(--arch-color-warning);
+}
+
+.arch-alert--danger {
+  --arch-alert-bg: color-mix(in srgb, var(--arch-color-danger), transparent 90%);
+  --arch-alert-border: color-mix(in srgb, var(--arch-color-danger), transparent 62%);
+  --arch-alert-title: var(--arch-color-danger);
+}

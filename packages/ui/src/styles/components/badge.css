@@ -1,0 +1,72 @@
+.arch-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid var(--arch-badge-border);
+  border-radius: var(--arch-radius-full);
+  background: var(--arch-badge-bg);
+  color: var(--arch-badge-color);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+
+  box-shadow: var(--arch-shadow-sm);
+  transition: all var(--arch-duration-normal) var(--arch-ease-out);
+}
+
+.arch-badge--sm {
+  min-height: 1.5rem;
+  padding: 0 var(--arch-space-3);
+  font-size: 0.75rem;
+}
+
+.arch-badge--md {
+  min-height: 1.875rem;
+  padding: 0 var(--arch-space-4);
+  font-size: 0.8125rem;
+}
+
+.arch-badge--neutral {
+  --arch-badge-bg: var(--arch-glass-bg);
+  --arch-badge-border: var(--arch-glass-border);
+  --arch-badge-color: var(--arch-color-fg);
+  backdrop-filter: blur(var(--arch-blur-sm));
+}
+
+.arch-badge--primary {
+  --arch-badge-bg: color-mix(in srgb, var(--arch-color-primary), transparent 88%);
+  --arch-badge-border: color-mix(in srgb, var(--arch-color-primary), transparent 74%);
+  --arch-badge-color: var(--arch-color-primary);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--arch-color-primary), transparent 85%);
+}
+
+.arch-badge--success {
+  --arch-badge-bg: color-mix(in srgb, var(--arch-color-success), transparent 88%);
+  --arch-badge-border: color-mix(in srgb, var(--arch-color-success), transparent 74%);
+  --arch-badge-color: var(--arch-color-success);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--arch-color-success), transparent 85%);
+}
+
+.arch-badge--warning {
+  --arch-badge-bg: color-mix(in srgb, var(--arch-color-warning), transparent 88%);
+  --arch-badge-border: color-mix(in srgb, var(--arch-color-warning), transparent 74%);
+  --arch-badge-color: var(--arch-color-warning);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--arch-color-warning), transparent 85%);
+}
+
+.arch-badge--danger {
+  --arch-badge-bg: color-mix(in srgb, var(--arch-color-danger), transparent 88%);
+  --arch-badge-border: color-mix(in srgb, var(--arch-color-danger), transparent 74%);
+  --arch-badge-color: var(--arch-color-danger);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--arch-color-danger), transparent 85%);
+}
+
+.arch-badge--info {
+  --arch-badge-bg: color-mix(in srgb, var(--arch-color-info), transparent 88%);
+  --arch-badge-border: color-mix(in srgb, var(--arch-color-info), transparent 74%);
+  --arch-badge-color: var(--arch-color-info);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--arch-color-info), transparent 85%);
+}

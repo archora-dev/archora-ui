@@ -1,0 +1,59 @@
+.arch-icon-button {
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: var(--arch-radius-md);
+  color: var(--arch-color-fg-muted);
+  cursor: pointer;
+  transition:
+    background-color var(--arch-duration-fast) var(--arch-ease-standard),
+    border-color var(--arch-duration-fast) var(--arch-ease-standard),
+    color var(--arch-duration-fast) var(--arch-ease-standard),
+    box-shadow var(--arch-duration-fast) var(--arch-ease-standard);
+}
+
+.arch-icon-button--sm {
+  width: 2rem;
+  height: 2rem;
+}
+.arch-icon-button--md {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.arch-icon-button--lg {
+  width: 3rem;
+  height: 3rem;
+}
+
+.arch-icon-button--ghost {
+  background: transparent;
+}
+.arch-icon-button--secondary {
+  border-color: var(--arch-color-border);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+}
+.arch-icon-button--primary {
+  background: var(--arch-color-primary);
+  color: var(--arch-color-primary-fg);
+}
+.arch-icon-button--danger {
+  background: color-mix(in srgb, var(--arch-color-danger), transparent 84%);
+  color: var(--arch-color-danger);
+}
+
+.arch-icon-button:hover:not(:disabled) {
+  border-color: var(--arch-color-border-strong);
+  background: var(--arch-color-bg-subtle);
+  color: var(--arch-color-fg);
+}
+
+.arch-icon-button:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}
+
+.arch-icon-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.54;
+}

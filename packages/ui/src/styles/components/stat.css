@@ -1,0 +1,60 @@
+.arch-stat {
+  display: grid;
+  gap: var(--arch-space-3);
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-lg);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  padding: var(--arch-space-4);
+}
+
+.arch-stat__header,
+.arch-stat__value-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--arch-space-3);
+}
+
+.arch-stat__label,
+.arch-stat__status {
+  color: var(--arch-color-fg-muted);
+  font-size: 0.8125rem;
+}
+
+.arch-stat__value {
+  font-size: 1.75rem;
+  line-height: var(--arch-line-tight);
+}
+
+.arch-stat__delta {
+  font-size: 0.8125rem;
+  font-weight: 750;
+}
+
+.arch-stat__delta--positive {
+  color: var(--arch-color-success);
+}
+.arch-stat__delta--negative {
+  color: var(--arch-color-danger);
+}
+.arch-stat__delta--warning {
+  color: var(--arch-color-warning);
+}
+.arch-stat__delta--neutral {
+  color: var(--arch-color-fg-muted);
+}
+
+.arch-stat__progress {
+  height: 0.5rem;
+  overflow: hidden;
+  border-radius: var(--arch-radius-full);
+  background: var(--arch-color-bg-subtle);
+}
+
+.arch-stat__progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--arch-color-primary), var(--arch-color-accent));
+}

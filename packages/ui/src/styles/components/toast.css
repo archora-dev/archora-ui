@@ -1,0 +1,121 @@
+.arch-toast-viewport {
+  position: fixed;
+  z-index: var(--arch-z-toast);
+  display: grid;
+  gap: var(--arch-space-3);
+  width: min(26rem, calc(100vw - var(--arch-space-6) * 2));
+  pointer-events: none;
+}
+
+.arch-toast-viewport--top-right {
+  top: var(--arch-space-6);
+  right: var(--arch-space-6);
+}
+
+.arch-toast-viewport--top-left {
+  top: var(--arch-space-6);
+  left: var(--arch-space-6);
+}
+
+.arch-toast-viewport--bottom-right {
+  right: var(--arch-space-6);
+  bottom: var(--arch-space-6);
+}
+
+.arch-toast-viewport--bottom-left {
+  bottom: var(--arch-space-6);
+  left: var(--arch-space-6);
+}
+
+.arch-toast {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--arch-space-4);
+  padding: var(--arch-space-4) var(--arch-space-5);
+  background: var(--arch-color-bg-elevated);
+  border: 1px solid var(--arch-color-border-strong);
+  border-radius: var(--arch-radius-lg);
+  box-shadow: var(--arch-shadow-lg);
+  color: var(--arch-color-fg);
+  min-width: 300px;
+  max-width: 420px;
+  pointer-events: auto;
+  animation: arch-toast-slide-in var(--arch-duration-normal) var(--arch-ease-emphasized);
+}
+
+.arch-toast::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: var(--arch-space-4);
+  bottom: var(--arch-space-4);
+  width: 4px;
+  border-radius: var(--arch-radius-full);
+  background: var(--arch-toast-accent, var(--arch-color-primary));
+  box-shadow: 0 0 10px var(--arch-toast-glow, var(--arch-color-primary-glow));
+}
+
+.arch-toast--success {
+  --arch-toast-accent: var(--arch-color-success);
+  --arch-toast-glow: color-mix(in srgb, var(--arch-color-success), transparent 60%);
+}
+.arch-toast--warning {
+  --arch-toast-accent: var(--arch-color-warning);
+  --arch-toast-glow: color-mix(in srgb, var(--arch-color-warning), transparent 60%);
+}
+.arch-toast--danger {
+  --arch-toast-accent: var(--arch-color-danger);
+  --arch-toast-glow: color-mix(in srgb, var(--arch-color-danger), transparent 60%);
+}
+
+.arch-toast__content {
+  flex: 1;
+}
+
+.arch-toast__title {
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+}
+
+.arch-toast__description {
+  font-size: 0.875rem;
+  color: var(--arch-color-fg-muted);
+  margin-top: 2px;
+}
+
+.arch-toast__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: -2px;
+  margin-right: -8px;
+  border-radius: var(--arch-radius-full);
+  border: none;
+  background: transparent;
+  color: var(--arch-color-fg-muted);
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: all var(--arch-duration-fast) var(--arch-ease-out);
+}
+
+.arch-toast__close:hover {
+  background: var(--arch-color-bg-subtle);
+  color: var(--arch-color-fg);
+  transform: scale(1.1);
+}
+
+@keyframes arch-toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}

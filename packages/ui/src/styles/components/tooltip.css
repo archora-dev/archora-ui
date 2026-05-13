@@ -1,0 +1,46 @@
+.arch-tooltip {
+  position: relative;
+  display: inline-flex;
+  width: fit-content;
+}
+
+.arch-tooltip__trigger {
+  display: inline-flex;
+  width: fit-content;
+}
+
+.arch-tooltip__trigger:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}
+
+.arch-tooltip__content {
+  position: fixed;
+  z-index: 10000; /* Extremely high z-index to ensure visibility in playground */
+  width: max-content;
+  max-width: 16rem;
+  pointer-events: none;
+  border: 1px solid var(--arch-color-border-strong);
+  border-radius: var(--arch-radius-md);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  font-size: 0.8125rem;
+  line-height: var(--arch-line-normal);
+  padding: var(--arch-space-2) var(--arch-space-3);
+  box-shadow: var(--arch-shadow-lg);
+  opacity: 0;
+  transition: opacity var(--arch-duration-fast) var(--arch-ease-standard);
+  visibility: hidden;
+}
+
+.arch-tooltip--open .arch-tooltip__content,
+.arch-tooltip__content--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arch-tooltip__content {
+    transition: none;
+  }
+}

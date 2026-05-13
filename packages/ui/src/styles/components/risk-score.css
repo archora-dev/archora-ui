@@ -1,0 +1,32 @@
+.arch-risk-score {
+  display: inline-flex;
+  gap: var(--arch-space-2);
+  color: var(--arch-color-fg);
+}
+
+.arch-risk-score--block {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.arch-risk-score--inline {
+  align-items: center;
+}
+
+.arch-risk-score__main {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--arch-space-2);
+}
+
+.arch-risk-score__score {
+  font-family: var(--arch-font-mono);
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+
+.arch-risk-score__label,
+.arch-risk-score__reason {
+  color: var(--arch-color-fg-muted);
+  font-size: 0.8125rem;
+}

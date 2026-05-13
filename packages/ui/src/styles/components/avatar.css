@@ -1,0 +1,59 @@
+.arch-avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: var(--arch-radius-full);
+  background: var(--arch-color-bg-subtle);
+  border: 1px solid var(--arch-color-border);
+  box-shadow: var(--arch-shadow-sm);
+  user-select: none;
+}
+
+.arch-avatar--sm {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.75rem;
+}
+.arch-avatar--md {
+  width: 3rem;
+  height: 3rem;
+  font-size: 0.875rem;
+}
+.arch-avatar--lg {
+  width: 4.5rem;
+  height: 4.5rem;
+  font-size: 1.25rem;
+}
+.arch-avatar--xl {
+  width: 6rem;
+  height: 6rem;
+  font-size: 1.75rem;
+}
+
+.arch-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: arch-avatar-fade-in var(--arch-duration-normal) var(--arch-ease-out);
+}
+
+.arch-avatar__fallback {
+  font-weight: 700;
+  color: var(--arch-color-fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+@keyframes arch-avatar-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

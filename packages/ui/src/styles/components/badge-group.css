@@ -1,0 +1,12 @@
+.arch-badge-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.arch-badge-group--xs {
+  gap: var(--arch-space-1);
+}
+.arch-badge-group--sm {
+  gap: var(--arch-space-2);
+}

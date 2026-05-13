@@ -1,0 +1,61 @@
+:root {
+  --arch-font-sans:
+    "Inter Variable", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --arch-font-mono:
+    "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+  --arch-line-tight: 1.1;
+  --arch-line-normal: 1.5;
+  --arch-line-relaxed: 1.7;
+
+  --arch-radius-xs: 4px;
+  --arch-radius-sm: 6px;
+  --arch-radius-md: 10px;
+  --arch-radius-lg: 14px;
+  --arch-radius-xl: 18px;
+  --arch-radius-full: 9999px;
+
+  --arch-space-1: 0.25rem;
+  --arch-space-2: 0.5rem;
+  --arch-space-3: 0.75rem;
+  --arch-space-4: 1rem;
+  --arch-space-5: 1.25rem;
+  --arch-space-6: 1.5rem;
+  --arch-space-8: 2rem;
+  --arch-space-10: 2.5rem;
+
+  --arch-shadow-sm: var(--elev-1);
+  --arch-shadow-md: var(--elev-2);
+  --arch-shadow-lg: var(--elev-3);
+  --arch-shadow-xl: var(--elev-3);
+  --arch-shadow-glow: 0 14px 28px -18px var(--arch-color-primary);
+  --arch-shadow-focus: var(--ring-focus);
+
+  --arch-duration-fast: 120ms;
+  --arch-duration-normal: 200ms;
+  --arch-duration-slow: 320ms;
+
+  --arch-ease-standard: cubic-bezier(0.32, 0.72, 0, 1);
+  --arch-ease-emphasized: cubic-bezier(0.32, 0.72, 0, 1);
+  --arch-ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+  --arch-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --arch-z-dropdown: 1000;
+  --arch-z-popover: 1100;
+  --arch-z-dialog: 1200;
+  --arch-z-toast: 1300;
+
+  --arch-blur-sm: 4px;
+  --arch-blur-md: 8px;
+  --arch-blur-lg: 16px;
+  --arch-glass-opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --arch-duration-fast: 1ms;
+    --arch-duration-normal: 1ms;
+    --arch-duration-slow: 1ms;
+  }
+}

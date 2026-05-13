@@ -1,0 +1,48 @@
+.arch-table {
+  overflow: hidden;
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-lg);
+  background: var(--arch-color-bg-elevated);
+}
+
+.arch-table__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--arch-font-size-sm);
+}
+
+.arch-table th,
+.arch-table td {
+  border-block-end: 1px solid var(--arch-color-border);
+  padding: var(--arch-space-3) var(--arch-space-4);
+  text-align: start;
+  vertical-align: middle;
+}
+
+.arch-table th {
+  background: var(--arch-color-bg-subtle);
+  color: var(--arch-color-fg-muted);
+  font-weight: var(--arch-font-weight-medium);
+}
+
+.arch-table tbody tr:hover {
+  background: var(--arch-color-bg-subtle);
+}
+
+.arch-table tbody tr:last-child td {
+  border-block-end: 0;
+}
+
+.arch-table [data-align="center"] {
+  text-align: center;
+}
+
+.arch-table [data-align="end"] {
+  text-align: end;
+}
+
+.arch-table__state {
+  color: var(--arch-color-fg-muted);
+  padding: var(--arch-space-6);
+  text-align: center;
+}

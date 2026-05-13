@@ -1,0 +1,42 @@
+.arch-status-state {
+  display: grid;
+  justify-items: center;
+  gap: var(--arch-space-3);
+  border: 1px dashed var(--arch-color-border);
+  border-radius: var(--arch-radius-lg);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  padding: var(--arch-space-8);
+  text-align: center;
+}
+
+.arch-status-state--error {
+  border-color: color-mix(in srgb, var(--arch-color-danger), transparent 54%);
+}
+
+.arch-status-state__icon {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-md);
+  color: var(--arch-color-fg-muted);
+  font-weight: 800;
+}
+
+.arch-status-state__title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.arch-status-state__description {
+  margin: var(--arch-space-1) 0 0;
+  color: var(--arch-color-fg-muted);
+  font-size: 0.875rem;
+}
+
+.arch-status-state__actions {
+  display: inline-flex;
+  gap: var(--arch-space-2);
+}

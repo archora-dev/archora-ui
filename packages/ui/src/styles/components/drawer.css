@@ -1,0 +1,165 @@
+.arch-drawer {
+  position: fixed;
+  z-index: var(--arch-z-dialog);
+  inset: 0;
+  display: flex;
+}
+
+.arch-drawer--right {
+  justify-content: flex-end;
+}
+
+.arch-drawer--non-modal {
+  pointer-events: none;
+}
+
+.arch-drawer--non-modal .arch-drawer__panel {
+  pointer-events: auto;
+}
+
+.arch-drawer--left {
+  justify-content: flex-start;
+}
+
+.arch-drawer--top {
+  align-items: flex-start;
+}
+
+.arch-drawer--bottom {
+  align-items: flex-end;
+}
+
+.arch-drawer__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 0.52);
+}
+
+.arch-drawer__panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, var(--arch-drawer-width, 28rem));
+  max-height: 100dvh;
+  border: 1px solid var(--arch-color-border);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  box-shadow: var(--arch-shadow-xl);
+}
+
+.arch-drawer--left .arch-drawer__panel,
+.arch-drawer--right .arch-drawer__panel {
+  height: 100%;
+}
+
+.arch-drawer--top .arch-drawer__panel,
+.arch-drawer--bottom .arch-drawer__panel {
+  width: 100%;
+  max-height: var(--arch-drawer-height, 32rem);
+}
+
+.arch-drawer--sm {
+  --arch-drawer-width: 22rem;
+  --arch-drawer-height: 22rem;
+}
+
+.arch-drawer--md {
+  --arch-drawer-width: 30rem;
+  --arch-drawer-height: 30rem;
+}
+
+.arch-drawer--lg {
+  --arch-drawer-width: 42rem;
+  --arch-drawer-height: 40rem;
+}
+
+.arch-drawer--full {
+  --arch-drawer-width: 100%;
+  --arch-drawer-height: 100%;
+}
+
+.arch-drawer--resizable.arch-drawer--left .arch-drawer__panel,
+.arch-drawer--resizable.arch-drawer--right .arch-drawer__panel {
+  resize: horizontal;
+  overflow: auto;
+}
+
+.arch-drawer--resizable.arch-drawer--top .arch-drawer__panel,
+.arch-drawer--resizable.arch-drawer--bottom .arch-drawer__panel {
+  resize: vertical;
+  overflow: auto;
+}
+
+.arch-drawer__header,
+.arch-drawer__footer {
+  display: flex;
+  gap: var(--arch-space-4);
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: var(--arch-space-6);
+  border-bottom: 1px solid var(--arch-color-border);
+}
+
+.arch-drawer__footer {
+  align-items: center;
+  border-top: 1px solid var(--arch-color-border);
+  border-bottom: 0;
+}
+
+.arch-drawer--sticky-footer .arch-drawer__footer {
+  position: sticky;
+  bottom: 0;
+  background: var(--arch-color-bg-elevated);
+}
+
+.arch-drawer__heading {
+  display: grid;
+  gap: var(--arch-space-1);
+  min-width: 0;
+}
+
+.arch-drawer__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 750;
+}
+
+.arch-drawer__description {
+  margin: 0;
+  color: var(--arch-color-fg-muted);
+  font-size: 0.875rem;
+  line-height: var(--arch-line-normal);
+}
+
+.arch-drawer__close {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-md);
+  background: transparent;
+  color: var(--arch-color-fg-muted);
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+
+.arch-drawer__close:hover {
+  color: var(--arch-color-fg);
+  background: var(--arch-color-bg-subtle);
+}
+
+.arch-drawer__close:focus-visible,
+.arch-drawer__panel:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}
+
+.arch-drawer__body {
+  min-height: 0;
+  flex: 1;
+  overflow: auto;
+  padding: var(--arch-space-6);
+}

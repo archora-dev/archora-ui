@@ -1,0 +1,25 @@
+.arch-filter-chip {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
+  gap: var(--arch-space-2);
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-full);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg-muted);
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  padding: 0 var(--arch-space-3);
+}
+
+.arch-filter-chip--active {
+  border-color: color-mix(in srgb, var(--arch-color-accent), transparent 40%);
+  background: color-mix(in srgb, var(--arch-color-accent), transparent 88%);
+  color: var(--arch-color-accent);
+}
+
+.arch-filter-chip:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}

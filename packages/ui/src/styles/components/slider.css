@@ -1,0 +1,23 @@
+.arch-slider {
+  display: grid;
+  gap: var(--arch-space-2);
+}
+
+.arch-slider__header {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--arch-space-3);
+  color: var(--arch-color-fg);
+  font-size: 0.875rem;
+  font-weight: 650;
+}
+
+.arch-slider__value {
+  color: var(--arch-color-fg-muted);
+  font-family: var(--arch-font-mono);
+}
+
+.arch-slider__input {
+  width: 100%;
+  accent-color: var(--arch-color-primary);
+}

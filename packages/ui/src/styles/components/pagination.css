@@ -1,0 +1,68 @@
+.arch-pagination {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--arch-space-1);
+  align-items: center;
+}
+
+.arch-pagination__item,
+.arch-pagination__ellipsis {
+  display: inline-grid;
+  place-items: center;
+  border-radius: var(--arch-radius-md);
+  font-weight: 650;
+  line-height: 1;
+}
+
+.arch-pagination__item {
+  border: 1px solid var(--arch-color-border);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  cursor: pointer;
+}
+
+.arch-pagination--sm .arch-pagination__item,
+.arch-pagination--sm .arch-pagination__ellipsis {
+  min-width: 1.875rem;
+  height: 1.875rem;
+  font-size: 0.8125rem;
+}
+
+.arch-pagination--md .arch-pagination__item,
+.arch-pagination--md .arch-pagination__ellipsis {
+  min-width: 2.25rem;
+  height: 2.25rem;
+  font-size: 0.875rem;
+}
+
+.arch-pagination--lg .arch-pagination__item,
+.arch-pagination--lg .arch-pagination__ellipsis {
+  min-width: 2.75rem;
+  height: 2.75rem;
+  font-size: 0.9375rem;
+}
+
+.arch-pagination__item:hover:not(:disabled) {
+  border-color: var(--arch-color-border-strong);
+}
+
+.arch-pagination__item--active {
+  border-color: var(--arch-color-primary);
+  background: var(--arch-color-primary);
+  color: var(--arch-color-primary-fg);
+}
+
+.arch-pagination__item:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}
+
+.arch-pagination__item:disabled,
+.arch-pagination--disabled .arch-pagination__item {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.arch-pagination__ellipsis {
+  color: var(--arch-color-fg-muted);
+}

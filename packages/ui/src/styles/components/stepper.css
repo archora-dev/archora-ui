@@ -1,0 +1,76 @@
+.arch-stepper {
+  display: flex;
+  gap: var(--arch-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.arch-stepper--vertical {
+  flex-direction: column;
+}
+
+.arch-stepper__step {
+  min-width: 0;
+  flex: 1;
+}
+
+.arch-stepper__button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: var(--arch-space-3);
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-lg);
+  background: var(--arch-color-bg-elevated);
+  color: var(--arch-color-fg);
+  padding: var(--arch-space-3);
+  text-align: left;
+}
+
+.arch-stepper__step--clickable .arch-stepper__button {
+  cursor: pointer;
+}
+
+.arch-stepper__button:disabled {
+  cursor: default;
+}
+
+.arch-stepper__index {
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: var(--arch-radius-full);
+  background: var(--arch-color-bg-subtle);
+  color: var(--arch-color-fg-muted);
+  font-size: 0.8125rem;
+  font-weight: 800;
+}
+
+.arch-stepper__step--complete .arch-stepper__index,
+.arch-stepper__step--current .arch-stepper__index {
+  background: var(--arch-color-primary);
+  color: var(--arch-color-primary-fg);
+}
+
+.arch-stepper__step--error .arch-stepper__index {
+  background: var(--arch-color-danger);
+  color: var(--arch-color-danger-fg);
+}
+
+.arch-stepper__text {
+  display: grid;
+  min-width: 0;
+  gap: 0.125rem;
+}
+
+.arch-stepper__label {
+  font-weight: 750;
+}
+
+.arch-stepper__description {
+  color: var(--arch-color-fg-muted);
+  font-size: 0.8125rem;
+}

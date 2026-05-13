@@ -1,0 +1,28 @@
+.arch-virtual-scroller {
+  position: relative;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.arch-virtual-scroller__spacer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  visibility: hidden;
+}
+
+.arch-virtual-scroller__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.arch-virtual-scroller__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}

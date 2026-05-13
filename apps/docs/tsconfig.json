@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@archora/ui": ["../../packages/ui/src/index.ts"],
+      "@archora/ui/styles.css": ["../../packages/ui/src/styles/index.css"]
+    }
+  },
+  "include": [".vitepress/**/*.ts", ".vitepress/**/*.vue", "**/*.md"]
+}
