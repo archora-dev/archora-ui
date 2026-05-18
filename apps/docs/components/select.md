@@ -31,17 +31,19 @@ const options = [
 
 ## Props
 
-| Prop        | Type                                                                           | Default         | Description                     |
-| :---------- | :----------------------------------------------------------------------------- | :-------------- | :------------------------------ |
-| options     | `{ value: string; label: string; description?: string; disabled?: boolean }[]` | -               | Option list.                    |
-| modelValue  | string                                                                         | -               | `v-model` value.                |
-| placeholder | string                                                                         | "Select option" | Placeholder.                    |
-| disabled    | boolean                                                                        | false           | Disables the component.         |
-| clearable   | boolean                                                                        | false           | Shows a clear selection button. |
-| loading     | boolean                                                                        | false           | Shows the loading state.        |
-| loadingText | string                                                                         | "Loading"       | Loading-state text.             |
-| emptyText   | string                                                                         | "No options"    | Empty-state text.               |
-| errorText   | string                                                                         | -               | Error-state text.               |
+| Prop        | Type                                                                           | Default         | Description                         |
+| :---------- | :----------------------------------------------------------------------------- | :-------------- | :---------------------------------- |
+| options     | `{ value: string; label: string; description?: string; disabled?: boolean }[]` | -               | Option list.                        |
+| modelValue  | string                                                                         | -               | `v-model` value.                    |
+| placeholder | string                                                                         | "Select option" | Placeholder.                        |
+| fullWidth   | boolean                                                                        | false           | Expands the trigger to full width.  |
+| dataTest    | string                                                                         | -               | Stable test hook prefix.            |
+| disabled    | boolean                                                                        | false           | Disables the component.             |
+| clearable   | boolean                                                                        | false           | Shows a clear selection button.     |
+| loading     | boolean                                                                        | false           | Shows the loading state.            |
+| loadingText | string                                                                         | "Loading"       | Loading-state text.                 |
+| emptyText   | string                                                                         | "No options"    | Empty-state text.                   |
+| errorText   | string                                                                         | -               | Error-state text.                   |
 
 ## Events
 

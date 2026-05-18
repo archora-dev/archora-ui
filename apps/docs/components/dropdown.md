@@ -18,7 +18,7 @@ import {
 <template>
   <ArchDropdown @select="handleSelect">
     <ArchDropdownTrigger>Actions</ArchDropdownTrigger>
-    <ArchDropdownContent>
+    <ArchDropdownContent align="end">
       <ArchDropdownItem value="edit">Edit</ArchDropdownItem>
       <ArchDropdownItem value="pause" description="Stop new traffic">Pause</ArchDropdownItem>
       <ArchDropdownItem value="delete" description="Remove service" tone="danger">
@@ -35,6 +35,7 @@ import {
 
 | Prop                         | Type                  | Default   | Description        |
 | :--------------------------- | :-------------------- | :-------- | :----------------- |
+| ArchDropdownContent.align    | "start" \| "end"      | "end"     | Menu alignment.    |
 | ArchDropdownItem.value       | string                | -         | Item value.        |
 | ArchDropdownItem.disabled    | boolean               | false     | Disables the item. |
 | ArchDropdownItem.description | string                | -         | Supporting text.   |

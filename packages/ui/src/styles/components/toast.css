@@ -88,6 +88,39 @@
   margin-top: 2px;
 }
 
+.arch-toast__actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: var(--arch-space-2);
+  margin-top: var(--arch-space-3);
+}
+
+.arch-toast__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.75rem;
+  padding: 0 var(--arch-space-3);
+  border: 1px solid var(--arch-color-border-strong);
+  border-radius: var(--arch-radius-md);
+  background: var(--arch-color-bg-subtle);
+  color: var(--arch-color-fg);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition:
+    background var(--arch-duration-fast) var(--arch-ease-out),
+    border-color var(--arch-duration-fast) var(--arch-ease-out),
+    color var(--arch-duration-fast) var(--arch-ease-out);
+}
+
+.arch-toast__action:hover {
+  background: var(--arch-color-bg-muted);
+  border-color: var(--arch-color-border-accent);
+}
+
 .arch-toast__close {
   display: flex;
   align-items: center;

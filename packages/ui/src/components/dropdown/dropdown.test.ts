@@ -175,4 +175,30 @@ describe("ArchDropdown", () => {
 
     wrapper.unmount();
   });
+
+  it("passes content alignment to the floating menu", async () => {
+    const Fixture = {
+      components: {
+        ArchDropdown,
+        ArchDropdownContent,
+        ArchDropdownItem,
+        ArchDropdownTrigger
+      },
+      template: `
+        <ArchDropdown>
+          <ArchDropdownTrigger>Actions</ArchDropdownTrigger>
+          <ArchDropdownContent align="start">
+            <ArchDropdownItem value="edit">Edit</ArchDropdownItem>
+          </ArchDropdownContent>
+        </ArchDropdown>
+      `
+    };
+    const wrapper = mount(Fixture, { attachTo: document.body });
+
+    await wrapper.get(".arch-dropdown__trigger").trigger("click");
+
+    expect(document.body.querySelector('[role="menu"]')).not.toBeNull();
+
+    wrapper.unmount();
+  });
 });

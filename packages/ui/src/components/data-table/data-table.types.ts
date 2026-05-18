@@ -17,10 +17,13 @@ export interface ArchDataTableProps {
   columns: ArchDataTableColumn[];
   rows: ArchDataTableRow[];
   rowKey?: string;
+  keyFn?: (row: ArchDataTableRow, index: number) => string | number;
+  selectedKey?: string | number | null;
   selectedKeys?: Array<string | number>;
   visibleColumnKeys?: string[];
   sortBy?: string;
   sortDirection?: ArchDataTableSortDirection;
+  initialSortDirection?: ArchDataTableSortDirection;
   page?: number;
   pageSize?: number;
   selectable?: boolean;

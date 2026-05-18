@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { ArchToast, ArchToastViewport, useToast } from "./index";
 
 describe("ArchToast", () => {
@@ -39,6 +39,7 @@ describe("ArchToast", () => {
 
   it("adds and dismisses toasts through useToast", () => {
     const toast = useToast();
+    toast.clear();
     const id = toast.show({ title: "Queued" });
 
     expect(toast.toasts.value.some((item) => item.id === id)).toBe(true);
@@ -46,6 +47,88 @@ describe("ArchToast", () => {
     toast.dismiss(id);
 
     expect(toast.toasts.value.some((item) => item.id === id)).toBe(false);
+  });
+
+  it("keeps duration zero toasts until dismissed", () => {
+    vi.useFakeTimers();
+    const toast = useToast();
+    toast.clear();
+
+    const id = toast.push({ title: "Persistent", duration: 0 });
+    vi.advanceTimersByTime(10_000);
+
+    expect(toast.toasts.value.some((item) => item.id === id)).toBe(true);
+
+    toast.dismiss(id);
+    vi.useRealTimers();
+  });
+
+  it("dismisses timed toasts after their duration", () => {
+    vi.useFakeTimers();
+    const toast = useToast();
+    toast.clear();
+
+    const id = toast.push({ title: "Timed", duration: 250 });
+    vi.advanceTimersByTime(250);
+
+    expect(toast.toasts.value.some((item) => item.id === id)).toBe(false);
+
+    vi.useRealTimers();
+  });
+
+  it("offers variant helper methods", () => {
+    const toast = useToast();
+    toast.clear();
+
+    toast.success("Saved");
+    toast.warning("Watch");
+    toast.danger("Failed");
+
+    expect(toast.toasts.value.map((item) => item.variant)).toEqual(["success", "warning", "danger"]);
+  });
+
+  it("runs actions and dismisses by default", async () => {
+    const action = vi.fn();
+    const toast = useToast();
+    toast.clear();
+    const id = toast.push({
+      title: "Restore session",
+      duration: 0,
+      actions: [{ label: "Restore", onClick: action }]
+    });
+
+    const wrapper = mount(ArchToast, {
+      props: {
+        toast: toast.toasts.value.find((item) => item.id === id)!
+      }
+    });
+
+    await wrapper.get(".arch-toast__action").trigger("click");
+
+    expect(action).toHaveBeenCalledOnce();
+    expect(toast.toasts.value.some((item) => item.id === id)).toBe(false);
+  });
+
+  it("keeps a toast open when an action disables dismissal", async () => {
+    const action = vi.fn();
+    const toast = useToast();
+    toast.clear();
+    const id = toast.push({
+      title: "Retry",
+      duration: 0,
+      actions: [{ label: "Retry", onClick: action, dismiss: false }]
+    });
+
+    const wrapper = mount(ArchToast, {
+      props: {
+        toast: toast.toasts.value.find((item) => item.id === id)!
+      }
+    });
+
+    await wrapper.get(".arch-toast__action").trigger("click");
+
+    expect(action).toHaveBeenCalledOnce();
+    expect(toast.toasts.value.some((item) => item.id === id)).toBe(true);
   });
 
   it("renders viewport items", () => {

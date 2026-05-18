@@ -58,6 +58,7 @@ export {
   ArchDialogTitle,
   ArchDialogTrigger
 } from "./components/dialog";
+export type { ArchDialogContentSize } from "./components/dialog";
 export {
   ArchDropdown,
   ArchDropdownContent,
@@ -135,7 +136,12 @@ export type { ArchTreeViewItemData, ArchTreeViewProps } from "./components/tree-
 export { ArchTooltip } from "./components/tooltip";
 export type { ArchTooltipPlacement, ArchTooltipProps } from "./components/tooltip";
 export { ArchToast, ArchToastViewport, useToast } from "./components/toast";
-export type { ArchToastInput, ArchToastItem, ArchToastVariant } from "./components/toast";
+export type {
+  ArchToastAction,
+  ArchToastInput,
+  ArchToastItem,
+  ArchToastVariant
+} from "./components/toast";
 export { ArchToolbar } from "./components/toolbar";
 export type {
   ArchToolbarDensity,
@@ -144,6 +150,7 @@ export type {
   ArchToolbarVariant
 } from "./components/toolbar";
 export { ArchVirtualScroller } from "./components/virtual-scroller";
+export type { ArchVirtualScrollerProps } from "./components/virtual-scroller";
 export { useControllableState } from "./composables/useControllableState";
 export { useDisclosure } from "./composables/useDisclosure";
 export { useFocusTrap } from "./composables/useFocusTrap";

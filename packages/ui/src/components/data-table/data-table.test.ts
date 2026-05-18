@@ -46,6 +46,24 @@ describe("ArchDataTable", () => {
     expect(wrapper.emitted("update:sortDirection")).toEqual([["asc"]]);
   });
 
+  it("uses the configured first sort direction for a new column", async () => {
+    const wrapper = mount(ArchDataTable, {
+      props: {
+        columns,
+        rows,
+        rowKey: "id",
+        initialSortDirection: "desc"
+      }
+    });
+
+    await wrapper.findAll("th button")[1].trigger("click");
+
+    const firstRowCells = wrapper.findAll("tbody tr")[0].findAll("td");
+
+    expect(firstRowCells[0].text()).toBe("API");
+    expect(wrapper.emitted("update:sortDirection")).toEqual([["desc"]]);
+  });
+
   it("renders loading and empty states", () => {
     const loading = mount(ArchDataTable, {
       props: {
@@ -97,6 +115,19 @@ describe("ArchDataTable", () => {
     expect(wrapper.findAll(".arch-checkbox")).toHaveLength(2);
     expect(wrapper.findAll(".arch-checkbox__control")).toHaveLength(2);
     expect(wrapper.findAll(".arch-checkbox--checked")).toHaveLength(1);
+  });
+
+  it("uses keyFn and selectedKey for row identity", () => {
+    const wrapper = mount(ArchDataTable, {
+      props: {
+        columns,
+        rows,
+        keyFn: (row, index) => `${row.name}-${index}`,
+        selectedKey: "Docs-1"
+      }
+    });
+
+    expect(wrapper.findAll("tbody tr")[1].classes()).toContain("arch-data-table__row--selected");
   });
 
   it("renders only visible columns when visibleColumnKeys is provided", () => {
@@ -158,7 +189,7 @@ describe("ArchDataTable", () => {
     expect(wrapper.text()).not.toContain("No rows");
   });
 
-  it("renders custom header and row action slots", () => {
+  it("renders custom header, row action, and footer slots", () => {
     const wrapper = mount(ArchDataTable, {
       props: {
         columns,
@@ -167,11 +198,27 @@ describe("ArchDataTable", () => {
       },
       slots: {
         "header-score": "<span>Health score</span>",
-        "row-actions": '<button type="button">Open</button>'
+        "row-actions": '<button type="button">Open</button>',
+        footer: "<span>2 rows</span>"
       }
     });
 
     expect(wrapper.find("thead").text()).toContain("Health score");
     expect(wrapper.findAll("tbody tr")[0].text()).toContain("Open");
+    expect(wrapper.find(".arch-data-table__footer").text()).toBe("2 rows");
+  });
+
+  it("emits row click with row index", async () => {
+    const wrapper = mount(ArchDataTable, {
+      props: {
+        columns,
+        rows,
+        rowKey: "id"
+      }
+    });
+
+    await wrapper.findAll("tbody tr")[1].trigger("click");
+
+    expect(wrapper.emitted("rowClick")).toEqual([[rows[1], 1]]);
   });
 });

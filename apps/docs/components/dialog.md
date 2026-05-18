@@ -28,6 +28,27 @@ import {
 
 <ComponentSandbox name="dialog" />
 
+## Sizes And Outside Clicks
+
+Use `size` when the dialog contains dense forms, patch previews or confirmation details. Disable outside-click close for destructive or multi-step flows.
+
+```vue
+<ArchDialog v-model:open="open">
+  <ArchDialogContent size="lg" :close-on-outside="false">
+    <ArchDialogHeader>
+      <ArchDialogTitle>Reset analysis settings</ArchDialogTitle>
+      <ArchDialogDescription>
+        This action changes analyzer configuration for future scans.
+      </ArchDialogDescription>
+    </ArchDialogHeader>
+    <ArchDialogFooter>
+      <ArchButton variant="ghost">Cancel</ArchButton>
+      <ArchButton variant="danger">Reset</ArchButton>
+    </ArchDialogFooter>
+  </ArchDialogContent>
+</ArchDialog>
+```
+
 ## Props
 
 | Prop                   | Type    | Default | Description                          |

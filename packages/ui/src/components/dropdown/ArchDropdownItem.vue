@@ -16,7 +16,7 @@ const props = withDefaults(
   }
 );
 
-const dropdown = inject(dropdownContextKey);
+const dropdown = inject(dropdownContextKey, null);
 
 function selectItem() {
   if (!props.disabled) {

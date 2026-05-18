@@ -5,6 +5,10 @@
   max-width: 100%;
 }
 
+.arch-select--full {
+  width: 100%;
+}
+
 .arch-select__trigger {
   display: flex;
   min-height: 2.5rem;

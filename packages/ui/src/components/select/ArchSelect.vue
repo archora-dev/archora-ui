@@ -9,6 +9,8 @@ import type { ArchSelectOption, ArchSelectProps } from "./select.types";
 const props = withDefaults(defineProps<ArchSelectProps>(), {
   modelValue: undefined,
   placeholder: "Select option",
+  fullWidth: false,
+  dataTest: undefined,
   disabled: false,
   clearable: false,
   loading: false,
@@ -33,6 +35,12 @@ const selectedOption = computed(() =>
   props.options.find((option) => String(option.value) === String(props.modelValue))
 );
 const renderedOptions = computed(() => (props.loading || props.errorText ? [] : props.options));
+const selectedIndex = computed(() =>
+  Math.max(
+    0,
+    renderedOptions.value.findIndex((option) => String(option.value) === String(props.modelValue))
+  )
+);
 const hasValue = computed(() => props.modelValue !== undefined && props.modelValue !== "");
 
 watch(
@@ -103,11 +111,22 @@ function onTriggerKeydown(event: KeyboardEvent) {
   }
 
   if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) {
+    const wasOpen = open.value;
     setOpen(true);
+    if (!wasOpen) {
+      keyboard.activeIndex.value = selectedIndex.value;
+    }
   }
 
   if (open.value) {
     keyboard.onKeydown(event);
+    return;
+  }
+
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    setOpen(true);
+    keyboard.activeIndex.value = selectedIndex.value;
   }
 }
 
@@ -126,7 +145,11 @@ const { floatingStyle } = useFloatingPosition(rootRef, listboxRef, open, {
   <div
     ref="rootRef"
     class="arch-select"
-    :class="{ 'arch-select--open': open, 'arch-select--disabled': disabled }"
+    :class="{
+      'arch-select--open': open,
+      'arch-select--disabled': disabled,
+      'arch-select--full': fullWidth
+    }"
   >
     <button
       class="arch-select__trigger"
@@ -135,6 +158,7 @@ const { floatingStyle } = useFloatingPosition(rootRef, listboxRef, open, {
       :aria-expanded="open ? 'true' : 'false'"
       :aria-controls="listboxId"
       :disabled="disabled"
+      :data-test="dataTest"
       @click="setOpen(!open)"
       @keydown="onTriggerKeydown"
     >
@@ -149,7 +173,7 @@ const { floatingStyle } = useFloatingPosition(rootRef, listboxRef, open, {
         ×
       </button>
       <span class="arch-select__chevron" aria-hidden="true">
-        <svg viewBox="0 0 16 16">
+        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
           <path d="m4 6 4 4 4-4" />
         </svg>
       </span>
@@ -162,6 +186,7 @@ const { floatingStyle } = useFloatingPosition(rootRef, listboxRef, open, {
         class="arch-select__listbox"
         role="listbox"
         :style="floatingStyle"
+        :data-test="dataTest ? `${dataTest}-menu` : undefined"
       >
         <button
           v-for="option in renderedOptions"
@@ -174,6 +199,7 @@ const { floatingStyle } = useFloatingPosition(rootRef, listboxRef, open, {
           :data-active="
             renderedOptions.indexOf(option) === keyboard.activeIndex.value ? 'true' : undefined
           "
+          :data-test="dataTest ? `${dataTest}-option-${String(option.value)}` : undefined"
           @click="selectOption(option)"
         >
           <slot

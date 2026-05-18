@@ -3,10 +3,14 @@ import { inject, ref } from "vue";
 import { useFloatingPosition } from "../../composables/useFloatingPosition";
 import { dropdownContextKey } from "./dropdown.context";
 
+const props = withDefaults(defineProps<{ align?: "start" | "end" }>(), {
+  align: "end"
+});
+
 const dropdown = inject(dropdownContextKey);
 const contentRef = dropdown?.contentRef ?? ref<HTMLElement | null>(null);
 const { floatingStyle } = useFloatingPosition(dropdown!.triggerRef, contentRef, dropdown!.open, {
-  align: "end",
+  align: props.align,
   minWidth: 192
 });
 

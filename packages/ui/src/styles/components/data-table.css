@@ -45,6 +45,10 @@
   background: var(--arch-color-bg-subtle);
 }
 
+.arch-data-table tbody tr.arch-data-table__row--selected {
+  background: var(--arch-color-bg-subtle);
+}
+
 .arch-data-table tbody tr:last-child td {
   border-block-end: 0;
 }
@@ -143,4 +147,11 @@
 .arch-data-table__page-button:hover:not(:disabled) {
   border-color: var(--arch-color-border-strong);
   background: var(--arch-color-bg);
+}
+
+.arch-data-table__footer {
+  border-block-start: 1px solid var(--arch-color-border);
+  color: var(--arch-color-fg-muted);
+  font-size: var(--arch-font-size-xs);
+  padding: var(--arch-space-3) var(--arch-space-4);
 }

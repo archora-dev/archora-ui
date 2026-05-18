@@ -10,10 +10,13 @@ import type {
 
 const props = withDefaults(defineProps<ArchDataTableProps>(), {
   rowKey: "id",
+  keyFn: undefined,
+  selectedKey: null,
   selectedKeys: () => [],
   visibleColumnKeys: undefined,
   sortBy: undefined,
   sortDirection: undefined,
+  initialSortDirection: "asc",
   page: undefined,
   pageSize: undefined,
   selectable: false,
@@ -31,7 +34,7 @@ const emit = defineEmits<{
   "update:sortDirection": [direction: ArchDataTableSortDirection];
   "update:page": [page: number];
   "update:pageSize": [pageSize: number];
-  rowClick: [row: ArchDataTableRow];
+  rowClick: [row: ArchDataTableRow, index: number];
 }>();
 
 const slots = useSlots();
@@ -94,6 +97,10 @@ const hasPagination = computed(() => Boolean(props.pageSize));
 const hasRowActions = computed(() => Boolean(slots["row-actions"]));
 
 function getRowKey(row: ArchDataTableRow, rowIndex: number) {
+  if (props.keyFn) {
+    return props.keyFn(row, rowIndex);
+  }
+
   const key = row[props.rowKey];
   return typeof key === "string" || typeof key === "number" ? key : rowIndex;
 }
@@ -111,7 +118,11 @@ function sortColumn(column: ArchDataTableColumn) {
   }
 
   const nextDirection =
-    activeSortBy.value === column.key && activeSortDirection.value === "asc" ? "desc" : "asc";
+    activeSortBy.value === column.key && activeSortDirection.value === "asc"
+      ? "desc"
+      : activeSortBy.value === column.key
+        ? "asc"
+        : props.initialSortDirection;
 
   internalSortBy.value = column.key;
   internalSortDirection.value = nextDirection;
@@ -133,7 +144,8 @@ function toggleRow(row: ArchDataTableRow, rowIndex: number, checked: boolean) {
 }
 
 function isSelected(row: ArchDataTableRow, rowIndex: number) {
-  return props.selectedKeys.includes(getRowKey(row, rowIndex));
+  const key = getRowKey(row, rowIndex);
+  return props.selectedKey === key || props.selectedKeys.includes(key);
 }
 
 function setPage(page: number) {
@@ -203,7 +215,8 @@ function setPage(page: number) {
         <tr
           v-for="(row, rowIndex) in paginatedRows"
           :key="getRowKey(row, rowIndex)"
-          @click="emit('rowClick', row)"
+          :class="{ 'arch-data-table__row--selected': isSelected(row, rowIndex) }"
+          @click="emit('rowClick', row, rowIndex)"
         >
           <td v-if="selectable" class="arch-data-table__selection-cell">
             <ArchCheckbox
@@ -275,6 +288,9 @@ function setPage(page: number) {
       >
         Next
       </button>
+    </div>
+    <div v-if="$slots.footer" class="arch-data-table__footer">
+      <slot name="footer" />
     </div>
   </div>
 </template>

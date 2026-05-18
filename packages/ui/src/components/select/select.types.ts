@@ -9,6 +9,8 @@ export interface ArchSelectProps {
   options: ArchSelectOption[];
   modelValue?: string;
   placeholder?: string;
+  fullWidth?: boolean;
+  dataTest?: string;
   disabled?: boolean;
   clearable?: boolean;
   loading?: boolean;

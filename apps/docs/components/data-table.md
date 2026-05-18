@@ -22,6 +22,7 @@ const rows = [{ id: 1, service: "Console", status: "Healthy", score: 92 }];
     :columns="columns"
     :rows="rows"
     :page-size="10"
+    initial-sort-direction="desc"
     selectable
     sticky-header
     @row-click="openRow"
@@ -44,10 +45,13 @@ const rows = [{ id: 1, service: "Console", status: "Healthy", score: 92 }];
 | columns           | ArchDataTableColumn[]      | -             | Column definitions.                          |
 | rows              | Record<string, unknown>[]  | -             | Row data.                                    |
 | rowKey            | string                     | "id"          | Row key field.                               |
+| keyFn             | (row, index) => string \| number | -       | Custom row identity function.                |
+| selectedKey       | string \| number \| null   | null          | Highlighted row key for single selection.    |
 | selectedKeys      | Array<string \| number>    | []            | Selected row keys.                           |
 | visibleColumnKeys | string[]                   | -             | Controlled list of visible column keys.      |
 | sortBy            | string                     | -             | Sort field.                                  |
 | sortDirection     | "asc" \| "desc"            | -             | Sort direction.                              |
+| initialSortDirection | "asc" \| "desc"         | "asc"         | First direction emitted for a new sorted column. |
 | page              | number                     | -             | Current page when pagination is enabled.     |
 | pageSize          | number                     | -             | Rows per page. Enables built-in pagination.  |
 | selectable        | boolean                    | false         | Shows row selection.                         |
@@ -80,7 +84,7 @@ const rows = [{ id: 1, service: "Console", status: "Healthy", score: 92 }];
 | update:sortDirection | direction: "asc" \| "desc"    | `sortDirection` change. |
 | update:page          | page: number                  | `page` change.          |
 | update:pageSize      | pageSize: number              | `pageSize` change.      |
-| rowClick             | row: Record<string, unknown>  | Component event.        |
+| rowClick             | row: Record<string, unknown>, index: number | Component event. |
 
 ## Slots
 
@@ -89,6 +93,7 @@ const rows = [{ id: 1, service: "Console", status: "Healthy", score: 92 }];
 | header-{key} | { column }                       | Custom header for a column.   |
 | cell-{key}   | { row, column, value, rowIndex } | Custom cell for a column key. |
 | row-actions  | { row, rowIndex }                | Action cell rendered per row. |
+| footer       | -                                | Table footer area.            |
 | loading      | -                                | Custom loading state.         |
 | empty        | -                                | Custom empty state.           |
 | error        | -                                | Custom error state.           |

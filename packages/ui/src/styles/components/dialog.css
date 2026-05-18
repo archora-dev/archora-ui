@@ -28,6 +28,22 @@
   box-shadow: var(--arch-shadow-lg);
 }
 
+.arch-dialog__content--sm {
+  width: min(100%, 28rem);
+}
+
+.arch-dialog__content--md {
+  width: min(100%, 32rem);
+}
+
+.arch-dialog__content--lg {
+  width: min(100%, 42rem);
+}
+
+.arch-dialog__content--xl {
+  width: min(100%, 56rem);
+}
+
 .arch-dialog__content:focus {
   outline: 0;
 }

@@ -101,6 +101,51 @@ describe("ArchDialog", () => {
     wrapper.unmount();
   });
 
+  it("can keep outside clicks from closing the dialog", async () => {
+    const wrapper = mount({
+      components: { ArchDialog, ArchDialogContent },
+      template: `
+        <ArchDialog v-model:open="open">
+          <ArchDialogContent :close-on-outside="false">Persistent dialog</ArchDialogContent>
+        </ArchDialog>
+      `,
+      data() {
+        return { open: true };
+      }
+    });
+
+    document.body
+      .querySelector<HTMLElement>(".arch-dialog__overlay")
+      ?.dispatchEvent(new MouseEvent("pointerdown", { bubbles: true }));
+    await nextTick();
+
+    expect(document.body.querySelector('[role="dialog"]')).not.toBeNull();
+
+    wrapper.unmount();
+  });
+
+  it("applies content size classes", async () => {
+    const wrapper = mount({
+      components: { ArchDialog, ArchDialogContent },
+      template: `
+        <ArchDialog v-model:open="open">
+          <ArchDialogContent size="xl">Wide dialog</ArchDialogContent>
+        </ArchDialog>
+      `,
+      data() {
+        return { open: true };
+      }
+    });
+
+    await nextTick();
+
+    expect(document.body.querySelector('[role="dialog"]')?.className).toContain(
+      "arch-dialog__content--xl"
+    );
+
+    wrapper.unmount();
+  });
+
   it("keeps tab focus inside dialog content", async () => {
     const wrapper = mount(DialogFixture, { attachTo: document.body });
 

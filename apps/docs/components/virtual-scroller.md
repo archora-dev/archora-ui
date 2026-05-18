@@ -12,8 +12,18 @@ const items = Array.from({ length: 1000 }, (_, index) => ({ id: index, label: "I
 </script>
 
 <template>
-  <ArchVirtualScroller :items="items" :item-height="40" style="height: 320px" v-slot="{ item }">
-    {{ item.label }}
+  <ArchVirtualScroller
+    :items="items"
+    :item-height="40"
+    :height="320"
+    :overscan="4"
+    :key-fn="(item) => item.id"
+    v-slot="{ item }"
+  >
+    <div class="module-row">
+      <strong>{{ item.label }}</strong>
+      <span>{{ item.path }}</span>
+    </div>
   </ArchVirtualScroller>
 </template>
 ```
@@ -22,10 +32,23 @@ const items = Array.from({ length: 1000 }, (_, index) => ({ id: index, label: "I
 
 ## Props
 
-| Prop       | Type      | Default | Description        |
-| :--------- | :-------- | :------ | :----------------- |
-| items      | unknown[] | -       | Item collection.   |
-| itemHeight | number    | -       | Fixed item height. |
+Use it for dense, uniform-row collections such as modules, dependencies, search results, audit events and history entries. Keep row height fixed; if rows need dynamic height, use pagination or a normal list.
+
+## Props
+
+| Prop       | Type                                      | Default | Description                                      |
+| :--------- | :---------------------------------------- | :------ | :----------------------------------------------- |
+| items      | readonly unknown[]                        | -       | Item collection.                                 |
+| itemHeight | number                                    | -       | Fixed row height in pixels.                      |
+| height     | number \| string                          | `100%`  | Viewport height. Numbers are converted to `px`.  |
+| overscan   | number                                    | `1`     | Extra rows rendered before and after the window. |
+| keyFn      | `(item: unknown, index: number) => Key`    | index   | Stable row key.                                  |
+
+## Exposed Methods
+
+| Method          | Description                            |
+| :-------------- | :------------------------------------- |
+| `scrollTo(i)`   | Scrolls to the row at the given index. |
 
 ## Slots
 

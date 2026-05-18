@@ -20,6 +20,7 @@ import "@archora/ui/styles.css";
 - Built-in dark, light, and system theme support.
 - Keyboard-aware interactive components.
 - Components designed for dashboards, admin surfaces, and data-heavy product UI.
+- Dense primitives for architecture tools: virtual scrolling, actionable toasts, keyed tables, filters and overlays.
 
 ## Documentation
 

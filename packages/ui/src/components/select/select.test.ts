@@ -29,6 +29,25 @@ describe("ArchSelect", () => {
     expect(wrapper.text()).toContain("Production");
   });
 
+  it("supports full width layout and stable test hooks", async () => {
+    const wrapper = mount(ArchSelect, {
+      props: {
+        options,
+        modelValue: "prod",
+        fullWidth: true,
+        dataTest: "environment-select"
+      }
+    });
+
+    expect(wrapper.classes()).toContain("arch-select--full");
+    expect(wrapper.get('[data-test="environment-select"]').text()).toContain("Production");
+
+    await wrapper.get('[data-test="environment-select"]').trigger("click");
+
+    expect(document.body.querySelector('[data-test="environment-select-menu"]')).not.toBeNull();
+    expect(document.body.querySelector('[data-test="environment-select-option-prod"]')).not.toBeNull();
+  });
+
   it("renders an SVG chevron instead of a text marker", () => {
     const wrapper = mount(ArchSelect, {
       props: {
@@ -103,6 +122,41 @@ describe("ArchSelect", () => {
     await trigger.trigger("keydown", { key: "Enter" });
 
     expect(wrapper.emitted("update:modelValue")).toEqual([["dev"]]);
+  });
+
+  it("opens from keyboard and starts navigation from the selected option", async () => {
+    const wrapper = mount(ArchSelect, {
+      props: {
+        options,
+        modelValue: "dev"
+      }
+    });
+
+    await wrapper.get("button").trigger("keydown", { key: "ArrowDown" });
+
+    expect(getOptions()[1].attributes("data-active")).toBe("true");
+
+    await wrapper.get("button").trigger("keydown", { key: "Enter" });
+
+    expect(wrapper.emitted("update:modelValue")).toEqual([["prod"]]);
+  });
+
+  it("opens from Enter and Space keys", async () => {
+    const enter = mount(ArchSelect, {
+      props: { options }
+    });
+
+    await enter.get("button").trigger("keydown", { key: "Enter" });
+    expect(document.body.querySelector('[role="listbox"]')).not.toBeNull();
+    enter.unmount();
+
+    const space = mount(ArchSelect, {
+      props: { options }
+    });
+
+    await space.get("button").trigger("keydown", { key: " " });
+    expect(document.body.querySelector('[role="listbox"]')).not.toBeNull();
+    space.unmount();
   });
 
   it("renders descriptions and custom option content", async () => {
