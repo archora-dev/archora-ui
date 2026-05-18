@@ -1,18 +1,20 @@
 # Roadmap
 
-## Now
-
-- Component foundation across base controls, overlays, search surfaces, forms, and data display.
-- Dark/light/system theming through CSS variables.
-- VitePress documentation with interactive component sandboxes.
-- Browser checks for documentation.
-- Tests, typecheck, lint, stylelint, format, and build gates.
+Archora UI development is planned around component depth, documentation quality, release readiness, and long-term theme stability.
 
 ## Next
 
-- Optional pagination and column controls for DataTable.
-- Improve typed row ergonomics for `ArchTable` and `ArchDataTable`.
-- Add a more composable `ArchDropdownTrigger` API for button-like custom triggers.
-- Visual regression and browser smoke checks for docs.
-- Public package metadata and first Changeset-managed release.
-- Broader assistive-technology QA with VoiceOver, NVDA, and browser-level smoke tests.
+- Deepen `ArchDatePicker` with range selection, disabled date rules, min/max dates, and stronger keyboard coverage.
+- Audit Dialog, Drawer, and AlertDialog focus behavior.
+- Polish docs around component selection and accessibility.
+- Add package consumer smoke testing.
+- Prepare the first Changesets-managed release flow.
+
+## Later
+
+- Add visual regression coverage for showcase components.
+- Add browser smoke checks for key documentation pages.
+- Expand the component set with focused internal-tool patterns such as Context Menu, Resizable Panel, Inline Edit, App Shell, and Activity Feed.
+- Document the full theme token contract and custom theme authoring flow.
+
+See the root `ROADMAP.md` for the full project roadmap.

@@ -112,3 +112,5 @@ corepack pnpm build
 ## Status
 
 Archora UI is in public preview. The component foundation, documentation, custom theme contract, and quality gates are ready for repository publication.
+
+See [ROADMAP.md](./ROADMAP.md) for the planned path from public preview to release readiness.
