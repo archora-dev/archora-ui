@@ -12,7 +12,6 @@
   background: var(--arch-card-bg);
   color: var(--arch-color-fg);
   box-shadow: var(--arch-card-shadow);
-
   transition:
     transform var(--arch-duration-normal) var(--arch-ease-out),
     box-shadow var(--arch-duration-normal) var(--arch-ease-out),
@@ -23,6 +22,7 @@
   --arch-card-bg: var(--arch-glass-bg);
   --arch-card-border: var(--arch-glass-border);
   --arch-card-shadow: var(--arch-shadow-lg);
+
   backdrop-filter: blur(var(--arch-blur-lg));
 }
 
@@ -52,23 +52,28 @@
 .arch-card--surface-glass {
   --arch-card-bg: var(--arch-glass-bg);
   --arch-card-border: var(--arch-glass-border);
+
   backdrop-filter: blur(var(--arch-blur-lg));
 }
 
 .arch-card--surface-solid {
   --arch-card-bg: var(--arch-color-bg-elevated);
+
   backdrop-filter: none;
 }
 
 .arch-card--none {
   --arch-card-padding: 0;
 }
+
 .arch-card--sm {
   --arch-card-padding: var(--arch-space-4);
 }
+
 .arch-card--md {
   --arch-card-padding: var(--arch-space-6);
 }
+
 .arch-card--lg {
   --arch-card-padding: var(--arch-space-8);
 }

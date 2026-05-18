@@ -48,10 +48,6 @@
   font-size: 0.9375rem;
 }
 
-.arch-segmented-control__item:hover:not(:disabled) {
-  color: var(--arch-color-fg);
-}
-
 .arch-segmented-control__item--active {
   background: var(--arch-color-bg-elevated);
   color: var(--arch-color-fg);
@@ -76,4 +72,8 @@
 .arch-segmented-control--disabled .arch-segmented-control__item {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+.arch-segmented-control__item:hover:not(:disabled) {
+  color: var(--arch-color-fg);
 }

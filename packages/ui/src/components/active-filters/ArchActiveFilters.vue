@@ -16,7 +16,9 @@ const emit = defineEmits<{ remove: [id: string]; reset: [] }>();
       @click="emit('remove', filter.id)"
     >
       <span class="arch-active-filters__text">
-        <span class="arch-active-filters__label">{{ filter.label }}</span><template v-if="filter.value">: </template><span v-if="filter.value" class="arch-active-filters__value">{{ filter.value }}</span>
+        <span class="arch-active-filters__label">{{ filter.label }}</span
+        ><template v-if="filter.value">: </template
+        ><span v-if="filter.value" class="arch-active-filters__value">{{ filter.value }}</span>
       </span>
       <span aria-hidden="true" class="arch-active-filters__remove">×</span>
     </button>

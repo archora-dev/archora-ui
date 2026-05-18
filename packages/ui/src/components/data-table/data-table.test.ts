@@ -98,4 +98,80 @@ describe("ArchDataTable", () => {
     expect(wrapper.findAll(".arch-checkbox__control")).toHaveLength(2);
     expect(wrapper.findAll(".arch-checkbox--checked")).toHaveLength(1);
   });
+
+  it("renders only visible columns when visibleColumnKeys is provided", () => {
+    const wrapper = mount(ArchDataTable, {
+      props: {
+        columns,
+        rows,
+        rowKey: "id",
+        visibleColumnKeys: ["name"]
+      }
+    });
+
+    expect(wrapper.findAll("th")).toHaveLength(1);
+    expect(wrapper.find("thead").text()).toContain("Name");
+    expect(wrapper.find("thead").text()).not.toContain("Score");
+    expect(wrapper.find("tbody").text()).toContain("API");
+    expect(wrapper.find("tbody").text()).not.toContain("3");
+  });
+
+  it("paginates rows and emits page changes", async () => {
+    const wrapper = mount(ArchDataTable, {
+      props: {
+        columns,
+        rows: [
+          { id: "a", name: "API", score: 3 },
+          { id: "d", name: "Docs", score: 1 },
+          { id: "s", name: "Shell", score: 5 }
+        ],
+        rowKey: "id",
+        page: 1,
+        pageSize: 2
+      }
+    });
+
+    expect(wrapper.findAll("tbody tr")).toHaveLength(2);
+    expect(wrapper.text()).toContain("Page 1 of 2");
+
+    await wrapper.get('[aria-label="Next page"]').trigger("click");
+
+    expect(wrapper.emitted("update:page")).toEqual([[2]]);
+
+    await wrapper.setProps({ page: 2 });
+
+    expect(wrapper.findAll("tbody tr")).toHaveLength(1);
+    expect(wrapper.find("tbody").text()).toContain("Shell");
+  });
+
+  it("renders error state above empty state", () => {
+    const wrapper = mount(ArchDataTable, {
+      props: {
+        columns,
+        rows: [],
+        errorText: "Could not load rows",
+        emptyText: "No rows"
+      }
+    });
+
+    expect(wrapper.get('[role="alert"]').text()).toBe("Could not load rows");
+    expect(wrapper.text()).not.toContain("No rows");
+  });
+
+  it("renders custom header and row action slots", () => {
+    const wrapper = mount(ArchDataTable, {
+      props: {
+        columns,
+        rows,
+        rowKey: "id"
+      },
+      slots: {
+        "header-score": "<span>Health score</span>",
+        "row-actions": '<button type="button">Open</button>'
+      }
+    });
+
+    expect(wrapper.find("thead").text()).toContain("Health score");
+    expect(wrapper.findAll("tbody tr")[0].text()).toContain("Open");
+  });
 });

@@ -22,28 +22,36 @@
 .arch-panel__header {
   border-bottom: 1px solid var(--arch-color-border);
 }
+
 .arch-panel__footer {
   border-top: 1px solid var(--arch-color-border);
 }
+
 .arch-panel__title {
   margin: 0;
   font-size: 0.9375rem;
 }
+
 .arch-panel__body {
   min-height: 0;
 }
+
 .arch-panel--scrollable .arch-panel__body {
   overflow: auto;
 }
+
 .arch-panel--padding-none .arch-panel__body {
   padding: 0;
 }
+
 .arch-panel--padding-sm .arch-panel__body {
   padding: var(--arch-space-3);
 }
+
 .arch-panel--padding-md .arch-panel__body {
   padding: var(--arch-space-4);
 }
+
 .arch-panel--padding-lg .arch-panel__body {
   padding: var(--arch-space-6);
 }

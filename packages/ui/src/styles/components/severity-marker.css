@@ -8,29 +8,36 @@
   width: 0.375rem;
   height: 0.375rem;
 }
+
 .arch-severity-marker--sm {
   width: 0.5rem;
   height: 0.5rem;
 }
+
 .arch-severity-marker--md {
   width: 0.675rem;
   height: 0.675rem;
 }
+
 .arch-severity-marker--critical,
 .arch-severity-marker--high {
   background: var(--arch-color-danger);
 }
+
 .arch-severity-marker--medium,
 .arch-severity-marker--warning {
   background: var(--arch-color-warning);
 }
+
 .arch-severity-marker--info {
   background: var(--arch-color-info);
 }
+
 .arch-severity-marker--low,
 .arch-severity-marker--success {
   background: var(--arch-color-success);
 }
+
 .arch-severity-marker--neutral,
 .arch-severity-marker--unknown {
   background: var(--arch-color-border-strong);

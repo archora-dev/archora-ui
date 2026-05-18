@@ -5,6 +5,11 @@
   max-width: 100%;
 }
 
+.arch-combobox__control {
+  position: relative;
+  display: grid;
+}
+
 .arch-combobox__input {
   min-height: 2.5rem;
   border: 1px solid var(--arch-color-border);
@@ -12,6 +17,33 @@
   background: var(--arch-color-bg-elevated);
   color: var(--arch-color-fg);
   padding: 0 var(--arch-space-4);
+}
+
+.arch-combobox__clear {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: var(--arch-space-2);
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin: auto 0;
+  place-items: center;
+  border: 0;
+  border-radius: var(--arch-radius-md);
+  background: transparent;
+  color: var(--arch-color-fg-muted);
+  cursor: pointer;
+  font: inherit;
+}
+
+.arch-combobox__clear:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}
+
+.arch-combobox__clear:hover {
+  background: var(--arch-color-bg-subtle);
+  color: var(--arch-color-fg);
 }
 
 .arch-combobox__input::placeholder {
@@ -28,6 +60,10 @@
   box-shadow: var(--arch-shadow-focus);
 }
 
+.arch-combobox__control:has(.arch-combobox__clear) .arch-combobox__input {
+  padding-inline-end: var(--arch-space-10);
+}
+
 .arch-combobox__listbox {
   position: fixed;
   z-index: var(--arch-z-dropdown);
@@ -42,6 +78,9 @@
 }
 
 .arch-combobox__option {
+  display: grid;
+  gap: var(--arch-space-1);
+  align-content: center;
   min-height: 2.25rem;
   border: 0;
   border-radius: var(--arch-radius-md);
@@ -49,6 +88,15 @@
   color: var(--arch-color-fg);
   padding: 0 var(--arch-space-3);
   text-align: start;
+}
+
+.arch-combobox__option-label {
+  font-weight: 500;
+}
+
+.arch-combobox__option-description {
+  color: var(--arch-color-fg-muted);
+  font-size: 0.8125rem;
 }
 
 .arch-combobox__option:disabled {
@@ -69,8 +117,12 @@
   background: var(--arch-color-bg-subtle);
 }
 
-.arch-combobox__empty {
+.arch-combobox__state {
   min-height: 2.25rem;
   color: var(--arch-color-fg-muted);
   padding: var(--arch-space-2) var(--arch-space-3);
+}
+
+.arch-combobox__state--error {
+  color: var(--arch-color-danger);
 }

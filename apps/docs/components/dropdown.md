@@ -1,6 +1,7 @@
 # Dropdown
 
-Context menu built from trigger, content, and items, closing on selection or outside click.
+Context menu built from trigger, content, and items, closing on selection or outside click. Items can
+carry descriptions and danger tone for destructive actions.
 
 ## Usage
 
@@ -19,7 +20,10 @@ import {
     <ArchDropdownTrigger>Actions</ArchDropdownTrigger>
     <ArchDropdownContent>
       <ArchDropdownItem value="edit">Edit</ArchDropdownItem>
-      <ArchDropdownItem value="delete">Delete</ArchDropdownItem>
+      <ArchDropdownItem value="pause" description="Stop new traffic">Pause</ArchDropdownItem>
+      <ArchDropdownItem value="delete" description="Remove service" tone="danger">
+        Delete
+      </ArchDropdownItem>
     </ArchDropdownContent>
   </ArchDropdown>
 </template>
@@ -29,16 +33,20 @@ import {
 
 ## Props
 
-| Prop                      | Type    | Default | Description        |
-| :------------------------ | :------ | :------ | :----------------- |
-| ArchDropdownItem.value    | string  | -       | Item value.        |
-| ArchDropdownItem.disabled | boolean | false   | Disables the item. |
+| Prop                         | Type                  | Default   | Description        |
+| :--------------------------- | :-------------------- | :-------- | :----------------- |
+| ArchDropdownItem.value       | string                | -         | Item value.        |
+| ArchDropdownItem.disabled    | boolean               | false     | Disables the item. |
+| ArchDropdownItem.description | string                | -         | Supporting text.   |
+| ArchDropdownItem.tone        | "default" \| "danger" | "default" | Item tone.         |
 
 ## Events
 
 | Event  | Payload       | Description          |
 | :----- | :------------ | :------------------- |
 | select | value: string | Menu item selection. |
+| open   | -             | Menu opened.         |
+| close  | -             | Menu closed.         |
 
 ## Slots
 

@@ -38,10 +38,6 @@
   padding: var(--arch-space-4) var(--arch-space-5);
 }
 
-.arch-radio-group__option:hover:not(.arch-radio-group__option--disabled) {
-  border-color: var(--arch-color-border-strong);
-}
-
 .arch-radio-group__option--checked {
   border-color: var(--arch-color-primary);
   background: color-mix(in srgb, var(--arch-color-primary), transparent 88%);
@@ -52,6 +48,14 @@
 .arch-radio-group--disabled .arch-radio-group__option {
   cursor: not-allowed;
   opacity: 0.55;
+}
+
+.arch-radio-group--invalid .arch-radio-group__option {
+  border-color: var(--arch-color-danger);
+}
+
+.arch-radio-group__option:hover:not(.arch-radio-group__option--disabled) {
+  border-color: var(--arch-color-border-strong);
 }
 
 .arch-radio-group__input {
@@ -96,8 +100,4 @@
   color: var(--arch-color-fg-muted);
   font-size: 0.8125rem;
   line-height: var(--arch-line-normal);
-}
-
-.arch-radio-group--invalid .arch-radio-group__option {
-  border-color: var(--arch-color-danger);
 }

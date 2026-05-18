@@ -75,4 +75,63 @@ describe("ArchCommand", () => {
 
     expect(wrapper.emitted("select")).toEqual([["open"]]);
   });
+
+  it("renders loading and error states before items", () => {
+    const loading = mount(ArchCommand, {
+      props: {
+        items,
+        loading: true,
+        loadingText: "Loading commands"
+      }
+    });
+
+    expect(loading.find('[role="status"]').text()).toBe("Loading commands");
+    expect(loading.findAll('[role="option"]')).toHaveLength(0);
+
+    const error = mount(ArchCommand, {
+      props: {
+        items,
+        errorText: "Commands unavailable"
+      }
+    });
+
+    expect(error.find('[role="alert"]').text()).toBe("Commands unavailable");
+    expect(error.findAll('[role="option"]')).toHaveLength(0);
+  });
+
+  it("renders custom item and state slots", async () => {
+    const wrapper = mount(ArchCommand, {
+      props: {
+        items,
+        emptyText: "No actions"
+      },
+      slots: {
+        item: '<template #item="{ item }"><strong>{{ item.label }}</strong></template>',
+        empty: "<span>No matching actions</span>"
+      }
+    });
+
+    expect(wrapper.text()).toContain("Open file");
+
+    await wrapper.get('[role="searchbox"]').setValue("deploy");
+
+    expect(wrapper.find('[role="status"]').text()).toBe("No matching actions");
+  });
+
+  it("clears search and selected value", async () => {
+    const wrapper = mount(ArchCommand, {
+      props: {
+        items,
+        modelValue: "open",
+        searchValue: "open",
+        clearable: true
+      }
+    });
+
+    await wrapper.get('[aria-label="Clear command search"]').trigger("click");
+
+    expect(wrapper.emitted("update:modelValue")).toEqual([[""]]);
+    expect(wrapper.emitted("update:searchValue")).toEqual([[""]]);
+    expect(wrapper.emitted("clear")).toEqual([[]]);
+  });
 });

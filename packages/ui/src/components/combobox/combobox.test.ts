@@ -97,4 +97,99 @@ describe("ArchCombobox", () => {
 
     expect(wrapper.emitted("update:modelValue")).toEqual([["svelte"]]);
   });
+
+  it("renders option descriptions and custom option content", async () => {
+    const wrapper = mount(ArchCombobox, {
+      props: {
+        options: [{ value: "console", label: "Console", description: "Primary admin surface" }]
+      },
+      slots: {
+        option:
+          '<template #option="{ option }"><strong>{{ option.label }}</strong><small>{{ option.description }}</small></template>'
+      }
+    });
+
+    await wrapper.get('[role="combobox"]').trigger("focus");
+
+    expect(document.body.textContent).toContain("Console");
+    expect(document.body.textContent).toContain("Primary admin surface");
+  });
+
+  it("renders loading, error, and custom empty states", async () => {
+    const loading = mount(ArchCombobox, {
+      props: {
+        options,
+        loading: true,
+        loadingText: "Loading services"
+      }
+    });
+
+    await loading.get('[role="combobox"]').trigger("focus");
+
+    expect(document.body.querySelector('[role="status"]')?.textContent).toContain(
+      "Loading services"
+    );
+
+    loading.unmount();
+
+    const error = mount(ArchCombobox, {
+      props: {
+        options,
+        errorText: "Services unavailable"
+      }
+    });
+
+    await error.get('[role="combobox"]').trigger("focus");
+
+    expect(document.body.querySelector('[role="alert"]')?.textContent).toContain(
+      "Services unavailable"
+    );
+
+    error.unmount();
+
+    const empty = mount(ArchCombobox, {
+      props: {
+        options,
+        emptyText: "No matching services"
+      }
+    });
+
+    await empty.get('[role="combobox"]').setValue("unknown");
+
+    expect(document.body.querySelector('[role="status"]')?.textContent).toContain(
+      "No matching services"
+    );
+  });
+
+  it("clears selected and search values when clear button is pressed", async () => {
+    const wrapper = mount(ArchCombobox, {
+      props: {
+        options,
+        modelValue: "vue",
+        clearable: true
+      }
+    });
+
+    await wrapper.get('[aria-label="Clear selection"]').trigger("click");
+
+    expect(wrapper.emitted("update:modelValue")).toEqual([[""]]);
+    expect(wrapper.emitted("update:searchValue")).toEqual([[""]]);
+    expect(wrapper.emitted("clear")).toEqual([[]]);
+  });
+
+  it("emits open and close events", async () => {
+    const wrapper = mount(ArchCombobox, {
+      attachTo: document.body,
+      props: { options }
+    });
+
+    await wrapper.get('[role="combobox"]').trigger("focus");
+    document.body.dispatchEvent(new MouseEvent("pointerdown", { bubbles: true }));
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.emitted("open")).toEqual([[]]);
+    expect(wrapper.emitted("close")).toEqual([[]]);
+
+    wrapper.unmount();
+  });
 });

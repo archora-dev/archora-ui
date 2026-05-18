@@ -136,4 +136,43 @@ describe("ArchDropdown", () => {
 
     wrapper.unmount();
   });
+
+  it("emits open and close events", async () => {
+    const wrapper = mount(DropdownFixture, { attachTo: document.body });
+
+    await wrapper.get(".arch-dropdown__trigger").trigger("click");
+    await getMenu().trigger("keydown", { key: "Escape" });
+
+    expect(wrapper.findComponent(ArchDropdown).emitted("open")).toEqual([[]]);
+    expect(wrapper.findComponent(ArchDropdown).emitted("close")).toEqual([[]]);
+
+    wrapper.unmount();
+  });
+
+  it("renders item descriptions and danger tone", async () => {
+    const Fixture = {
+      components: {
+        ArchDropdown,
+        ArchDropdownContent,
+        ArchDropdownItem,
+        ArchDropdownTrigger
+      },
+      template: `
+        <ArchDropdown>
+          <ArchDropdownTrigger>Actions</ArchDropdownTrigger>
+          <ArchDropdownContent>
+            <ArchDropdownItem value="delete" description="Remove service" tone="danger">Delete</ArchDropdownItem>
+          </ArchDropdownContent>
+        </ArchDropdown>
+      `
+    };
+    const wrapper = mount(Fixture, { attachTo: document.body });
+
+    await wrapper.get(".arch-dropdown__trigger").trigger("click");
+
+    expect(document.body.textContent).toContain("Remove service");
+    expect(getMenuItems()[0].classes()).toContain("arch-dropdown__item--danger");
+
+    wrapper.unmount();
+  });
 });

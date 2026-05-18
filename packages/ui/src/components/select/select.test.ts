@@ -104,4 +104,80 @@ describe("ArchSelect", () => {
 
     expect(wrapper.emitted("update:modelValue")).toEqual([["dev"]]);
   });
+
+  it("renders descriptions and custom option content", async () => {
+    const wrapper = mount(ArchSelect, {
+      props: {
+        options: [{ value: "prod", label: "Production", description: "Customer traffic" }]
+      },
+      slots: {
+        option:
+          '<template #option="{ option }"><strong>{{ option.label }}</strong><small>{{ option.description }}</small></template>'
+      }
+    });
+
+    await wrapper.get("button").trigger("click");
+
+    expect(document.body.textContent).toContain("Production");
+    expect(document.body.textContent).toContain("Customer traffic");
+  });
+
+  it("renders loading, error, and empty states", async () => {
+    const loading = mount(ArchSelect, {
+      props: {
+        options,
+        loading: true,
+        loadingText: "Loading environments"
+      }
+    });
+
+    await loading.get("button").trigger("click");
+    expect(document.body.querySelector('[role="status"]')?.textContent).toContain(
+      "Loading environments"
+    );
+    loading.unmount();
+
+    const error = mount(ArchSelect, {
+      props: {
+        options,
+        errorText: "Environments unavailable"
+      }
+    });
+
+    await error.get("button").trigger("click");
+    expect(document.body.querySelector('[role="alert"]')?.textContent).toContain(
+      "Environments unavailable"
+    );
+    error.unmount();
+
+    const empty = mount(ArchSelect, {
+      props: {
+        options: [],
+        emptyText: "No environments"
+      }
+    });
+
+    await empty.get("button").trigger("click");
+    expect(document.body.querySelector('[role="status"]')?.textContent).toContain(
+      "No environments"
+    );
+  });
+
+  it("clears selection and emits open close events", async () => {
+    const wrapper = mount(ArchSelect, {
+      props: {
+        options,
+        modelValue: "prod",
+        clearable: true
+      }
+    });
+
+    await wrapper.get("button").trigger("click");
+    await wrapper.get('[aria-label="Clear selection"]').trigger("click");
+
+    expect(wrapper.emitted("open")).toEqual([[]]);
+    expect(wrapper.emitted("update:modelValue")).toEqual([[""]]);
+    expect(wrapper.emitted("clear")).toEqual([[]]);
+    expect(wrapper.emitted("close")).toEqual([[]]);
+  });
 });

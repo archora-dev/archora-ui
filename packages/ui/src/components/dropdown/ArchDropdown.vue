@@ -5,6 +5,8 @@ import { dropdownContextKey } from "./dropdown.context";
 
 const emit = defineEmits<{
   select: [value: string];
+  open: [];
+  close: [];
 }>();
 
 const open = ref(false);
@@ -13,7 +15,17 @@ const triggerRef = ref<HTMLElement | null>(null);
 const contentRef = ref<HTMLElement | null>(null);
 
 function setOpen(nextOpen: boolean) {
+  if (open.value === nextOpen) {
+    return;
+  }
+
   open.value = nextOpen;
+
+  if (nextOpen) {
+    emit("open");
+  } else {
+    emit("close");
+  }
 }
 
 function select(value: string) {

@@ -77,6 +77,7 @@ const textValue = ref("Archora");
 const selected = ref("stable");
 const selectedList = ref<Array<string | number>>([1]);
 const page = ref(2);
+const dataTablePage = ref(1);
 const slider = ref(62);
 const date = ref("2026-05-13");
 const open = ref(false);
@@ -118,24 +119,27 @@ const RiskyPanel = defineComponent({
 });
 
 const options = [
-  { value: "draft", label: "Draft" },
-  { value: "stable", label: "Stable" },
-  { value: "deprecated", label: "Deprecated", disabled: true }
+  { value: "console", label: "Console", description: "Primary admin surface" },
+  { value: "billing", label: "Billing", description: "Invoices, plans, and account state" },
+  { value: "deploy", label: "Deploy", description: "Release pipeline and rollout controls" },
+  { value: "legacy", label: "Legacy", description: "Archived service", disabled: true }
 ];
 const commands = [
-  { value: "open", label: "Open project", description: "Navigate to project" },
-  { value: "deploy", label: "Deploy", description: "Run release pipeline" },
-  { value: "archive", label: "Archive", description: "Move to archive" }
+  { value: "open", label: "Open service", description: "Navigate to the service overview" },
+  { value: "deploy", label: "Start deployment", description: "Run the release pipeline" },
+  { value: "archive", label: "Archive service", description: "Move service out of rotation" }
 ];
 const rows = [
-  { id: 1, name: "Console", status: "Healthy", score: 92 },
-  { id: 2, name: "Billing", status: "Watch", score: 76 },
-  { id: 3, name: "Deploy", status: "Blocked", score: 43 }
+  { id: 1, service: "Console", owner: "Platform", status: "Healthy", score: 92 },
+  { id: 2, service: "Billing", owner: "Finance", status: "Watch", score: 76 },
+  { id: 3, service: "Deploy", owner: "Release", status: "Blocked", score: 43 },
+  { id: 4, service: "Docs", owner: "Developer Experience", status: "Healthy", score: 88 }
 ];
 const columns = [
-  { key: "name", label: "Name", sortable: true },
+  { key: "service", label: "Service", sortable: true, minWidth: "10rem" },
+  { key: "owner", label: "Owner" },
   { key: "status", label: "Status" },
-  { key: "score", label: "Score", sortable: true, align: "end" as const }
+  { key: "score", label: "Score", sortable: true, align: "end" as const, width: "7rem" }
 ];
 const timeline = [
   { id: "1", title: "Token update", time: "09:20", tone: "info" as const },
@@ -199,7 +203,7 @@ const samples: Record<string, string> = {
   select: '<ArchSelect v-model="value" :options="options" />',
   dialog: "<ArchDialog><ArchDialogTrigger>Open</ArchDialogTrigger>...</ArchDialog>",
   toast: 'toast.show({ title: "Saved", variant: "success" })',
-  "data-table": '<ArchDataTable :columns="columns" :rows="rows" selectable />',
+  "data-table": '<ArchDataTable :columns="columns" :rows="rows" selectable :page-size="2" />',
   "virtual-scroller": '<ArchVirtualScroller :items="items" :item-height="40" />'
 };
 </script>
@@ -356,24 +360,49 @@ const samples: Record<string, string> = {
         v-else-if="name === 'combobox'"
         v-model="selected"
         :options="options"
+        clearable
         :disabled="disabled"
-        placeholder="Search status"
-      />
+        placeholder="Search service"
+        empty-text="No services found"
+      >
+        <template #option="{ option }">
+          <span class="arch-doc-sandbox__option-label">{{ option.label }}</span>
+          <span class="arch-doc-sandbox__option-description">{{ option.description }}</span>
+        </template>
+      </ArchCombobox>
 
       <ArchCommand
         v-else-if="name === 'command'"
         class="arch-doc-sandbox__wide"
         :items="commands"
+        clearable
+        empty-text="No commands found"
       />
 
       <ArchDataTable
         v-else-if="name === 'data-table'"
         v-model:selected-keys="selectedList"
+        v-model:page="dataTablePage"
         class="arch-doc-sandbox__full"
         :columns="columns"
         :rows="rows"
+        :page-size="2"
+        density="compact"
         selectable
-      />
+        sticky-header
+      >
+        <template #cell-status="{ value }">
+          <ArchBadge
+            :variant="value === 'Healthy' ? 'success' : value === 'Watch' ? 'warning' : 'danger'"
+            size="sm"
+          >
+            {{ value }}
+          </ArchBadge>
+        </template>
+        <template #row-actions>
+          <ArchButton size="sm" variant="ghost">Open</ArchButton>
+        </template>
+      </ArchDataTable>
 
       <ArchDatePicker v-else-if="name === 'date-picker'" v-model="date" />
 
@@ -396,8 +425,13 @@ const samples: Record<string, string> = {
       <ArchDropdown v-else-if="name === 'dropdown'">
         <ArchDropdownTrigger>Actions</ArchDropdownTrigger>
         <ArchDropdownContent>
-          <ArchDropdownItem value="edit">Edit</ArchDropdownItem>
-          <ArchDropdownItem value="delete">Delete</ArchDropdownItem>
+          <ArchDropdownItem value="edit" description="Update service metadata">
+            Edit
+          </ArchDropdownItem>
+          <ArchDropdownItem value="pause" description="Stop new traffic">Pause</ArchDropdownItem>
+          <ArchDropdownItem value="delete" description="Remove service" tone="danger">
+            Delete
+          </ArchDropdownItem>
         </ArchDropdownContent>
       </ArchDropdown>
 
@@ -505,8 +539,16 @@ const samples: Record<string, string> = {
         v-else-if="name === 'select'"
         v-model="selected"
         :options="options"
+        clearable
         :disabled="disabled"
-      />
+        empty-text="No services"
+        placeholder="Choose service"
+      >
+        <template #option="{ option }">
+          <span class="arch-doc-sandbox__option-label">{{ option.label }}</span>
+          <span class="arch-doc-sandbox__option-description">{{ option.description }}</span>
+        </template>
+      </ArchSelect>
 
       <ArchSeverityMarker
         v-else-if="name === 'severity-marker'"

@@ -11,6 +11,11 @@ const props = withDefaults(defineProps<ArchComboboxProps>(), {
   searchValue: undefined,
   placeholder: "Search option",
   disabled: false,
+  clearable: false,
+  loading: false,
+  loadingText: "Loading",
+  emptyText: "No results",
+  errorText: undefined,
   name: undefined,
   autocomplete: "off",
   ariaLabel: undefined,
@@ -22,6 +27,9 @@ const emit = defineEmits<{
   "update:modelValue": [value: string];
   "update:searchValue": [value: string];
   change: [value: string];
+  clear: [];
+  open: [];
+  close: [];
 }>();
 
 const open = ref(false);
@@ -36,7 +44,12 @@ const selectedOption = computed(() =>
 
 const searchText = computed(() => props.searchValue ?? internalSearch.value);
 const normalizedSearch = computed(() => searchText.value.trim().toLocaleLowerCase());
+const hasValue = computed(() => searchText.value.length > 0 || props.modelValue !== undefined);
 const filteredOptions = computed(() => {
+  if (props.loading || props.errorText) {
+    return [];
+  }
+
   if (!normalizedSearch.value) {
     return props.options;
   }
@@ -61,13 +74,27 @@ function setSearch(value: string) {
   emit("update:searchValue", value);
 }
 
+function setOpen(value: boolean) {
+  if (props.disabled || open.value === value) {
+    return;
+  }
+
+  open.value = value;
+
+  if (value) {
+    emit("open");
+  } else {
+    emit("close");
+  }
+}
+
 function onInput(event: Event) {
   if (props.disabled) {
     return;
   }
 
   setSearch((event.target as HTMLInputElement).value);
-  open.value = true;
+  setOpen(true);
 }
 
 function selectOption(option: ArchComboboxOption) {
@@ -79,7 +106,7 @@ function selectOption(option: ArchComboboxOption) {
   setSearch(option.label);
   emit("update:modelValue", newValue);
   emit("change", newValue);
-  open.value = false;
+  setOpen(false);
 }
 
 const keyboard = useKeyboardNavigation({
@@ -100,16 +127,27 @@ watch(filteredOptions, () => {
 
 function onKeydown(event: KeyboardEvent) {
   if (event.key === "Escape") {
-    open.value = false;
+    setOpen(false);
     return;
   }
 
-  open.value = true;
+  setOpen(true);
   keyboard.onKeydown(event);
 }
 
+function clearSelection() {
+  if (props.disabled) {
+    return;
+  }
+
+  setSearch("");
+  emit("update:modelValue", "");
+  emit("clear");
+  setOpen(false);
+}
+
 useOutsideClick([rootRef, listboxRef], () => {
-  open.value = false;
+  setOpen(false);
 });
 
 const { floatingStyle } = useFloatingPosition(rootRef, listboxRef, open, {
@@ -125,27 +163,39 @@ const { floatingStyle } = useFloatingPosition(rootRef, listboxRef, open, {
     class="arch-combobox"
     :class="{ 'arch-combobox--open': open, 'arch-combobox--disabled': disabled }"
   >
-    <input
-      class="arch-combobox__input"
-      role="combobox"
-      :value="searchText"
-      :name="name"
-      :placeholder="placeholder"
-      :autocomplete="autocomplete"
-      :disabled="disabled"
-      :aria-haspopup="'listbox'"
-      :aria-expanded="open ? 'true' : 'false'"
-      :aria-controls="listboxId"
-      :aria-activedescendant="
-        keyboard.activeIndex.value >= 0 ? `${listboxId}-${keyboard.activeIndex.value}` : undefined
-      "
-      :aria-label="ariaLabel"
-      :aria-labelledby="ariaLabelledby"
-      :aria-describedby="ariaDescribedby"
-      @focus="open = true"
-      @input="onInput"
-      @keydown="onKeydown"
-    />
+    <div class="arch-combobox__control">
+      <input
+        class="arch-combobox__input"
+        role="combobox"
+        :value="searchText"
+        :name="name"
+        :placeholder="placeholder"
+        :autocomplete="autocomplete"
+        :disabled="disabled"
+        :aria-haspopup="'listbox'"
+        :aria-expanded="open ? 'true' : 'false'"
+        :aria-controls="listboxId"
+        :aria-activedescendant="
+          keyboard.activeIndex.value >= 0 ? `${listboxId}-${keyboard.activeIndex.value}` : undefined
+        "
+        :aria-label="ariaLabel"
+        :aria-labelledby="ariaLabelledby"
+        :aria-describedby="ariaDescribedby"
+        @focus="setOpen(true)"
+        @input="onInput"
+        @keydown="onKeydown"
+      />
+      <button
+        v-if="clearable && hasValue && !disabled"
+        class="arch-combobox__clear"
+        type="button"
+        aria-label="Clear selection"
+        @mousedown.prevent
+        @click="clearSelection"
+      >
+        ×
+      </button>
+    </div>
     <Teleport to="body">
       <div
         v-if="open"
@@ -170,10 +220,29 @@ const { floatingStyle } = useFloatingPosition(rootRef, listboxRef, open, {
           @mousedown.prevent
           @click="selectOption(option)"
         >
-          {{ option.label }}
+          <slot
+            name="option"
+            :option="option"
+            :active="filteredOptions.indexOf(option) === keyboard.activeIndex.value"
+          >
+            <span class="arch-combobox__option-label">{{ option.label }}</span>
+            <span v-if="option.description" class="arch-combobox__option-description">
+              {{ option.description }}
+            </span>
+          </slot>
         </button>
-        <div v-if="filteredOptions.length === 0" class="arch-combobox__empty" role="status">
-          No results
+        <div v-if="loading" class="arch-combobox__state" role="status">
+          <slot name="loading">{{ loadingText }}</slot>
+        </div>
+        <div
+          v-else-if="errorText"
+          class="arch-combobox__state arch-combobox__state--error"
+          role="alert"
+        >
+          <slot name="error">{{ errorText }}</slot>
+        </div>
+        <div v-else-if="filteredOptions.length === 0" class="arch-combobox__state" role="status">
+          <slot name="empty">{{ emptyText }}</slot>
         </div>
       </div>
     </Teleport>

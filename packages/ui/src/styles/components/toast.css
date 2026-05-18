@@ -61,10 +61,12 @@
   --arch-toast-accent: var(--arch-color-success);
   --arch-toast-glow: color-mix(in srgb, var(--arch-color-success), transparent 60%);
 }
+
 .arch-toast--warning {
   --arch-toast-accent: var(--arch-color-warning);
   --arch-toast-glow: color-mix(in srgb, var(--arch-color-warning), transparent 60%);
 }
+
 .arch-toast--danger {
   --arch-toast-accent: var(--arch-color-danger);
   --arch-toast-glow: color-mix(in srgb, var(--arch-color-danger), transparent 60%);
@@ -114,6 +116,7 @@
     opacity: 0;
     transform: translateX(20px) scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: translateX(0) scale(1);

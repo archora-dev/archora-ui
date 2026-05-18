@@ -23,11 +23,9 @@
   user-select: none;
   vertical-align: middle;
   cursor: pointer;
-
   box-shadow:
     var(--arch-button-shadow, none),
     inset 0 1px 0 color-mix(in srgb, var(--arch-color-fg), transparent 90%);
-
   transition:
     background-color var(--arch-duration-normal) var(--arch-ease-emphasized),
     border-color var(--arch-duration-normal) var(--arch-ease-emphasized),
@@ -127,6 +125,7 @@
   --arch-button-border: var(--arch-color-border);
   --arch-button-color: var(--arch-color-fg);
   --arch-button-glow: color-mix(in srgb, var(--arch-color-fg), transparent 92%);
+
   backdrop-filter: blur(var(--arch-blur-md));
 }
 

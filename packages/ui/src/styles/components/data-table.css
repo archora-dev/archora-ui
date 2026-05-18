@@ -5,6 +5,11 @@
   background: var(--arch-color-bg-elevated);
 }
 
+.arch-data-table--sticky-header {
+  max-block-size: min(42rem, 72vh);
+  overflow: auto;
+}
+
 .arch-data-table__table {
   width: 100%;
   border-collapse: collapse;
@@ -19,10 +24,21 @@
   vertical-align: middle;
 }
 
+.arch-data-table--compact th,
+.arch-data-table--compact td {
+  padding: var(--arch-space-2) var(--arch-space-3);
+}
+
 .arch-data-table th {
   background: var(--arch-color-bg-subtle);
   color: var(--arch-color-fg-muted);
   font-weight: var(--arch-font-weight-medium);
+}
+
+.arch-data-table--sticky-header th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
 }
 
 .arch-data-table tbody tr:hover {
@@ -62,6 +78,12 @@
   text-align: center;
 }
 
+.arch-data-table__actions-cell {
+  width: 1%;
+  text-align: end;
+  white-space: nowrap;
+}
+
 .arch-data-table__selection-cell .arch-checkbox {
   display: inline-grid;
   width: 1.75rem;
@@ -78,4 +100,47 @@
   color: var(--arch-color-fg-muted);
   padding: var(--arch-space-6);
   text-align: center;
+}
+
+.arch-data-table__state--error {
+  color: var(--arch-color-danger);
+}
+
+.arch-data-table__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--arch-space-3);
+  border-block-start: 1px solid var(--arch-color-border);
+  padding: var(--arch-space-3) var(--arch-space-4);
+}
+
+.arch-data-table__page-status {
+  color: var(--arch-color-fg-muted);
+  font-size: var(--arch-font-size-sm);
+}
+
+.arch-data-table__page-button {
+  border: 1px solid var(--arch-color-border);
+  border-radius: var(--arch-radius-md);
+  background: var(--arch-color-bg-subtle);
+  color: var(--arch-color-fg);
+  cursor: pointer;
+  font: inherit;
+  padding: var(--arch-space-2) var(--arch-space-3);
+}
+
+.arch-data-table__page-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.56;
+}
+
+.arch-data-table__page-button:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}
+
+.arch-data-table__page-button:hover:not(:disabled) {
+  border-color: var(--arch-color-border-strong);
+  background: var(--arch-color-bg);
 }

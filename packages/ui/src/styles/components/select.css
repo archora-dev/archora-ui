@@ -34,6 +34,30 @@
   white-space: nowrap;
 }
 
+.arch-select__clear {
+  display: inline-grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: var(--arch-radius-md);
+  background: transparent;
+  color: var(--arch-color-fg-muted);
+  cursor: pointer;
+  font: inherit;
+}
+
+.arch-select__clear:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}
+
+.arch-select__clear:hover {
+  background: var(--arch-color-bg-subtle);
+  color: var(--arch-color-fg);
+}
+
 .arch-select__chevron {
   display: inline-grid;
   width: 1rem;
@@ -87,8 +111,9 @@
 }
 
 .arch-select__option {
-  display: flex;
-  align-items: center;
+  display: grid;
+  gap: var(--arch-space-1);
+  align-content: center;
   min-height: 2.25rem;
   border: 0;
   border-radius: var(--arch-radius-md);
@@ -97,6 +122,15 @@
   font-size: 0.9125rem;
   padding: 0 var(--arch-space-3);
   text-align: start;
+}
+
+.arch-select__option-label {
+  font-weight: 500;
+}
+
+.arch-select__option-description {
+  color: var(--arch-color-fg-muted);
+  font-size: 0.8125rem;
 }
 
 .arch-select__option:disabled {
@@ -115,4 +149,14 @@
 
 .arch-select__option:hover:not(:disabled) {
   background: var(--arch-color-bg-subtle);
+}
+
+.arch-select__state {
+  min-height: 2.25rem;
+  color: var(--arch-color-fg-muted);
+  padding: var(--arch-space-2) var(--arch-space-3);
+}
+
+.arch-select__state--error {
+  color: var(--arch-color-danger);
 }

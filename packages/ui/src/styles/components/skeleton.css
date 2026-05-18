@@ -7,12 +7,9 @@
 
 .arch-skeleton::after {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  inset: 0;
   transform: translateX(-100%);
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.05), transparent);
   animation: arch-skeleton-shimmer 2s infinite;
   content: "";
 }

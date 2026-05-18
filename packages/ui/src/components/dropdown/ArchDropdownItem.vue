@@ -6,9 +6,13 @@ const props = withDefaults(
   defineProps<{
     value: string;
     disabled?: boolean;
+    description?: string;
+    tone?: "default" | "danger";
   }>(),
   {
-    disabled: false
+    disabled: false,
+    description: undefined,
+    tone: "default"
   }
 );
 
@@ -24,11 +28,13 @@ function selectItem() {
 <template>
   <button
     class="arch-dropdown__item"
+    :class="{ 'arch-dropdown__item--danger': tone === 'danger' }"
     type="button"
     role="menuitem"
     :disabled="disabled"
     @click="selectItem"
   >
-    <slot />
+    <span class="arch-dropdown__item-label"><slot /></span>
+    <span v-if="description" class="arch-dropdown__item-description">{{ description }}</span>
   </button>
 </template>

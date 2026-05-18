@@ -21,6 +21,10 @@
   cursor: pointer;
 }
 
+.arch-pagination__ellipsis {
+  color: var(--arch-color-fg-muted);
+}
+
 .arch-pagination--sm .arch-pagination__item,
 .arch-pagination--sm .arch-pagination__ellipsis {
   min-width: 1.875rem;
@@ -42,10 +46,6 @@
   font-size: 0.9375rem;
 }
 
-.arch-pagination__item:hover:not(:disabled) {
-  border-color: var(--arch-color-border-strong);
-}
-
 .arch-pagination__item--active {
   border-color: var(--arch-color-primary);
   background: var(--arch-color-primary);
@@ -63,6 +63,6 @@
   opacity: 0.5;
 }
 
-.arch-pagination__ellipsis {
-  color: var(--arch-color-fg-muted);
+.arch-pagination__item:hover:not(:disabled) {
+  border-color: var(--arch-color-border-strong);
 }

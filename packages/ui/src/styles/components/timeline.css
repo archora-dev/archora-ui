@@ -24,12 +24,15 @@
 .arch-timeline__item--success .arch-timeline__marker {
   background: var(--arch-color-success);
 }
+
 .arch-timeline__item--info .arch-timeline__marker {
   background: var(--arch-color-info);
 }
+
 .arch-timeline__item--warning .arch-timeline__marker {
   background: var(--arch-color-warning);
 }
+
 .arch-timeline__item--danger .arch-timeline__marker {
   background: var(--arch-color-danger);
 }

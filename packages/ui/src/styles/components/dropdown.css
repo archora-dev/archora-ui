@@ -38,16 +38,31 @@
 }
 
 .arch-dropdown__item {
-  display: flex;
+  display: grid;
+  gap: var(--arch-space-1);
   width: 100%;
   min-height: 2.25rem;
-  align-items: center;
+  align-content: center;
   border: 0;
   border-radius: var(--arch-radius-md);
   background: transparent;
   color: var(--arch-color-fg);
   padding: 0 var(--arch-space-3);
   text-align: start;
+}
+
+.arch-dropdown__item-label,
+.arch-dropdown__item-description {
+  display: block;
+}
+
+.arch-dropdown__item-description {
+  color: var(--arch-color-fg-muted);
+  font-size: 0.8125rem;
+}
+
+.arch-dropdown__item--danger {
+  color: var(--arch-color-danger);
 }
 
 .arch-dropdown__item:disabled {

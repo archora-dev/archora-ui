@@ -35,12 +35,15 @@
 .arch-stat__delta--positive {
   color: var(--arch-color-success);
 }
+
 .arch-stat__delta--negative {
   color: var(--arch-color-danger);
 }
+
 .arch-stat__delta--warning {
   color: var(--arch-color-warning);
 }
+
 .arch-stat__delta--neutral {
   color: var(--arch-color-fg-muted);
 }

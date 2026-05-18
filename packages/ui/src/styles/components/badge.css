@@ -12,7 +12,6 @@
   letter-spacing: -0.01em;
   line-height: 1;
   white-space: nowrap;
-
   box-shadow: var(--arch-shadow-sm);
   transition: all var(--arch-duration-normal) var(--arch-ease-out);
 }
@@ -33,6 +32,7 @@
   --arch-badge-bg: var(--arch-glass-bg);
   --arch-badge-border: var(--arch-glass-border);
   --arch-badge-color: var(--arch-color-fg);
+
   backdrop-filter: blur(var(--arch-blur-sm));
 }
 
@@ -40,6 +40,7 @@
   --arch-badge-bg: color-mix(in srgb, var(--arch-color-primary), transparent 88%);
   --arch-badge-border: color-mix(in srgb, var(--arch-color-primary), transparent 74%);
   --arch-badge-color: var(--arch-color-primary);
+
   box-shadow: 0 0 10px color-mix(in srgb, var(--arch-color-primary), transparent 85%);
 }
 
@@ -47,6 +48,7 @@
   --arch-badge-bg: color-mix(in srgb, var(--arch-color-success), transparent 88%);
   --arch-badge-border: color-mix(in srgb, var(--arch-color-success), transparent 74%);
   --arch-badge-color: var(--arch-color-success);
+
   box-shadow: 0 0 10px color-mix(in srgb, var(--arch-color-success), transparent 85%);
 }
 
@@ -54,6 +56,7 @@
   --arch-badge-bg: color-mix(in srgb, var(--arch-color-warning), transparent 88%);
   --arch-badge-border: color-mix(in srgb, var(--arch-color-warning), transparent 74%);
   --arch-badge-color: var(--arch-color-warning);
+
   box-shadow: 0 0 10px color-mix(in srgb, var(--arch-color-warning), transparent 85%);
 }
 
@@ -61,6 +64,7 @@
   --arch-badge-bg: color-mix(in srgb, var(--arch-color-danger), transparent 88%);
   --arch-badge-border: color-mix(in srgb, var(--arch-color-danger), transparent 74%);
   --arch-badge-color: var(--arch-color-danger);
+
   box-shadow: 0 0 10px color-mix(in srgb, var(--arch-color-danger), transparent 85%);
 }
 
@@ -68,5 +72,6 @@
   --arch-badge-bg: color-mix(in srgb, var(--arch-color-info), transparent 88%);
   --arch-badge-border: color-mix(in srgb, var(--arch-color-info), transparent 74%);
   --arch-badge-color: var(--arch-color-info);
+
   box-shadow: 0 0 10px color-mix(in srgb, var(--arch-color-info), transparent 85%);
 }

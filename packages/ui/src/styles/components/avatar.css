@@ -17,16 +17,19 @@
   height: 2rem;
   font-size: 0.75rem;
 }
+
 .arch-avatar--md {
   width: 3rem;
   height: 3rem;
   font-size: 0.875rem;
 }
+
 .arch-avatar--lg {
   width: 4.5rem;
   height: 4.5rem;
   font-size: 1.25rem;
 }
+
 .arch-avatar--xl {
   width: 6rem;
   height: 6rem;
@@ -52,6 +55,7 @@
     opacity: 0;
     transform: scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: scale(1);

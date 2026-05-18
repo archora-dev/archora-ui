@@ -18,7 +18,8 @@ withDefaults(defineProps<{ items: readonly ArchBreadcrumbItem[]; label?: string 
           v-if="item.href && index < items.length - 1"
           class="arch-breadcrumbs__link"
           :href="item.href"
-        >{{ item.label }}</a>
+          >{{ item.label }}</a
+        >
         <span
           v-else
           class="arch-breadcrumbs__current"

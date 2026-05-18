@@ -6,7 +6,7 @@
   border-radius: var(--arch-radius-full);
   overflow: hidden;
   border: 1px solid var(--arch-color-border);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / 0.2);
 }
 
 .arch-progress-bar__fill {

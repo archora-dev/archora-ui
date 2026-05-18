@@ -13,10 +13,6 @@
   pointer-events: none;
 }
 
-.arch-drawer--non-modal .arch-drawer__panel {
-  pointer-events: auto;
-}
-
 .arch-drawer--left {
   justify-content: flex-start;
 }
@@ -48,6 +44,10 @@
   box-shadow: var(--arch-shadow-xl);
 }
 
+.arch-drawer--non-modal .arch-drawer__panel {
+  pointer-events: auto;
+}
+
 .arch-drawer--left .arch-drawer__panel,
 .arch-drawer--right .arch-drawer__panel {
   height: 100%;
@@ -77,6 +77,11 @@
 .arch-drawer--full {
   --arch-drawer-width: 100%;
   --arch-drawer-height: 100%;
+}
+
+.arch-drawer__panel:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
 }
 
 .arch-drawer--resizable.arch-drawer--left .arch-drawer__panel,
@@ -146,15 +151,14 @@
   font-size: 1.25rem;
 }
 
+.arch-drawer__close:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
+}
+
 .arch-drawer__close:hover {
   color: var(--arch-color-fg);
   background: var(--arch-color-bg-subtle);
-}
-
-.arch-drawer__close:focus-visible,
-.arch-drawer__panel:focus-visible {
-  outline: 0;
-  box-shadow: var(--arch-shadow-focus);
 }
 
 .arch-drawer__body {
