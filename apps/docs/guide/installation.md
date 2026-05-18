@@ -1,20 +1,20 @@
 # Installation
 
-Archora UI is distributed as a set of npm packages.
+Archora UI is distributed through npm as `@archora/ui`.
 
 ## Step 1: Install Packages
 
-Install the main component package and tokens with your preferred package manager:
+Install the component package with your preferred package manager:
 
 ```sh
 # pnpm
-pnpm add @archora/ui @archora/tokens
+pnpm add @archora/ui
 
 # npm
-npm install @archora/ui @archora/tokens
+npm install @archora/ui
 
 # yarn
-yarn add @archora/ui @archora/tokens
+yarn add @archora/ui
 ```
 
 ## Step 2: Import Styles

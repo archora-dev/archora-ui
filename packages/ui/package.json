@@ -1,9 +1,28 @@
 {
   "name": "@archora/ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "description": "Dark-first Vue 3 component library for premium dashboards and internal tools.",
   "license": "MIT",
+  "homepage": "https://github.com/archora-dev/archora-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/archora-dev/archora-ui.git",
+    "directory": "packages/ui"
+  },
+  "bugs": {
+    "url": "https://github.com/archora-dev/archora-ui/issues"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "typescript",
+    "components",
+    "design-system",
+    "ui-kit",
+    "dashboard",
+    "internal-tools"
+  ],
   "main": "./dist/archora-ui.umd.cjs",
   "module": "./dist/archora-ui.js",
   "types": "./dist/types/index.d.ts",
@@ -17,6 +36,10 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "node scripts/clean-dist.mjs && vue-tsc -p tsconfig.build.json --emitDeclarationOnly && vite build && node scripts/finalize-css.mjs",
     "typecheck": "vue-tsc -p tsconfig.json --noEmit",

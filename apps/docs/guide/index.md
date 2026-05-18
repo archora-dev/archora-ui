@@ -22,4 +22,4 @@ Archora UI's organic flow style is built on a few principles:
 ## Library Structure
 
 - **@archora/ui:** Main component package.
-- **@archora/tokens:** Design token source for colors, radius, shadows, spacing, and motion.
+- **Design tokens:** CSS variables shipped with `@archora/ui` for colors, radius, shadows, spacing, and motion.
