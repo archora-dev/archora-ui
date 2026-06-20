@@ -21,7 +21,7 @@
 }
 
 .arch-tree-item__label:hover {
-  background: rgb(255 255 255 / 0.05);
+  background: var(--arch-color-bg-subtle);
   color: var(--arch-color-fg);
 }
 
