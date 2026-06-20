@@ -85,7 +85,7 @@ Built-in themes: `dark`, `light`, `system`.
 ## Documentation
 
 Components, live sandboxes, theming and tokens — see the
-[documentation site](https://archora-dev.github.io/archora-ui/).
+[documentation site](https://ui.archora.dev/).
 
 ## License
 
