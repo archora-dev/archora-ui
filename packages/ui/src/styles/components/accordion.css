@@ -9,7 +9,7 @@
   border-radius: var(--arch-radius-lg);
   background: var(--arch-glass-bg);
   overflow: hidden;
-  transition: all var(--arch-duration-normal) var(--arch-ease-emphasized);
+  transition: all var(--arch-duration-normal) var(--arch-ease-standard);
 }
 
 .arch-accordion-item--expanded {
@@ -33,7 +33,7 @@
 }
 
 .arch-accordion-item__icon {
-  transition: transform var(--arch-duration-normal) var(--arch-ease-emphasized);
+  transition: transform var(--arch-duration-normal) var(--arch-ease-standard);
 }
 
 .arch-accordion-item--expanded .arch-accordion-item__icon {
@@ -42,7 +42,7 @@
 
 .arch-accordion-item__content {
   overflow: hidden;
-  animation: arch-accordion-slide-down var(--arch-duration-normal) var(--arch-ease-emphasized);
+  animation: arch-accordion-slide-down var(--arch-duration-normal) var(--arch-ease-standard);
 }
 
 .arch-accordion-item__inner {

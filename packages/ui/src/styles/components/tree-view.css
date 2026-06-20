@@ -27,7 +27,7 @@
 
 .arch-tree-item__chevron {
   font-size: 0.75rem;
-  transition: transform var(--arch-duration-fast) var(--arch-ease-emphasized);
+  transition: transform var(--arch-duration-fast) var(--arch-ease-standard);
   opacity: 0.5;
 }
 

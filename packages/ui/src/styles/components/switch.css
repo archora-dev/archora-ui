@@ -33,7 +33,7 @@
   box-shadow: var(--arch-shadow-sm);
   transition:
     background-color var(--arch-duration-fast) var(--arch-ease-standard),
-    transform var(--arch-duration-fast) var(--arch-ease-emphasized);
+    transform var(--arch-duration-fast) var(--arch-ease-standard);
 }
 
 .arch-switch__control:focus-visible {

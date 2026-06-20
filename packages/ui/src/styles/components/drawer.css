@@ -41,7 +41,7 @@
   border: 1px solid var(--arch-color-border);
   background: var(--arch-color-bg-elevated);
   color: var(--arch-color-fg);
-  box-shadow: var(--arch-shadow-xl);
+  box-shadow: var(--arch-shadow-lg);
 }
 
 .arch-drawer--non-modal .arch-drawer__panel {
