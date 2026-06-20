@@ -22,7 +22,7 @@ function runAction(action: NonNullable<ArchToastItem["actions"]>[number]) {
 </script>
 
 <template>
-  <article
+  <div
     class="arch-toast"
     :class="`arch-toast--${toast.variant ?? 'info'}`"
     :role="toast.variant === 'danger' ? 'alert' : 'status'"
@@ -49,5 +49,5 @@ function runAction(action: NonNullable<ArchToastItem["actions"]>[number]) {
     <button class="arch-toast__close" type="button" aria-label="Close" @click="close">
       <span aria-hidden="true">×</span>
     </button>
-  </article>
+  </div>
 </template>
