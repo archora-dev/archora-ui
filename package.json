@@ -18,11 +18,13 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "stylelint": "stylelint \"**/*.{css,vue}\""
+    "stylelint": "stylelint \"**/*.{css,vue}\"",
+    "size": "corepack pnpm build:ui && corepack pnpm --filter @archora/ui size"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.4",
     "@eslint/js": "^9.26.0",
+    "@size-limit/preset-small-lib": "^12.1.0",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vue/test-utils": "^2.4.6",
     "axe-core": "^4.12.1",
@@ -32,6 +34,7 @@
     "playwright": "^1.59.1",
     "postcss-html": "^1.8.0",
     "prettier": "^3.5.3",
+    "size-limit": "^12.1.0",
     "stylelint": "^16.19.1",
     "stylelint-config-standard": "^38.0.0",
     "typescript": "^5.8.3",

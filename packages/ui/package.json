@@ -43,7 +43,8 @@
   "scripts": {
     "build": "node scripts/clean-dist.mjs && vue-tsc -p tsconfig.build.json --emitDeclarationOnly && vite build && node scripts/finalize-css.mjs",
     "typecheck": "vue-tsc -p tsconfig.json --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "size": "size-limit"
   },
   "peerDependencies": {
     "vue": "^3.5.0"

@@ -1,5 +1,8 @@
 # @archora/ui
 
+[![npm](https://img.shields.io/npm/v/@archora/ui)](https://www.npmjs.com/package/@archora/ui)
+[![minzip](https://img.shields.io/bundlephobia/minzip/@archora/ui)](https://bundlephobia.com/package/@archora/ui)
+
 Archora UI is a Vue 3 and TypeScript component library for dense dashboards, internal tools, and professional product interfaces.
 
 ## Installation
