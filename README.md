@@ -1,17 +1,27 @@
 # Archora UI
 
-Archora UI is a Vue 3 and TypeScript component library for dense dashboards, internal tools, and professional product interfaces.
+**Dark-first Vue 3 component library for dense dashboards and internal tools.**
 
-The project is built around typed Vue components, semantic design tokens, accessible interaction patterns, and VitePress documentation with live component sandboxes.
+Archora is built for the screens people use all day — observability panels,
+admin consoles, release pipelines: high information density, calm visuals,
+readable under load. It is a focused kit, not a general-purpose marketing UI.
 
 ## Highlights
 
+- **Dark-first, light tuned:** both themes shipped and verified, not dark as an afterthought.
+- **Dense by default:** data tables, virtual scrolling, keyed rows, filters and overlays — primitives for tools.
+- **Token-driven themes:** set a few `--arch-color-*` base colors on a `data-theme`; derived tokens compute via `color-mix`. SSR-safe runtime theming with `defineTheme` / `setAccent`.
+- **Tiny per component:** side-effect-free ESM — one `ArchButton` is ~0.6 kB brotli, the whole library ~20 kB, with a bundle budget in CI.
+- **Accessible by default:** keyboard support, visible focus, semantic ARIA — interactive components checked against `axe-core` in CI.
 - **Vue 3 + TypeScript:** typed component APIs, emits, slots, and public exports.
-- **Token-driven styling:** colors, spacing, radii, shadows, motion, and z-index values are exposed as CSS variables.
-- **Custom themes:** built-in dark/light themes plus custom `data-theme` palettes such as `brand`.
-- **Accessible components:** keyboard support, visible focus states, semantic disabled states, and ARIA where it clarifies behavior.
-- **Interactive documentation:** every component page includes a live sandbox for testing states and props.
-- **Package-ready structure:** monorepo layout designed for a future `@archora/ui` package release.
+
+### Why not Vuetify / PrimeVue / Element Plus
+
+Those are broad, light-first, Material/enterprise kits for general apps. Archora
+trades breadth and theming layers for a narrow target: a dense dark dashboard
+aesthetic out of the box, a token contract instead of a theming framework, and a
+small surface you can read end to end. Building a public marketing site? Use the
+broad kits. Building the internal tool behind it? This is for you.
 
 ## Quick Start
 

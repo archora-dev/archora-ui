@@ -5,6 +5,7 @@ import { watch } from "vue";
 import "@archora/ui/styles.css";
 import "./sandbox.css";
 import ComponentSandbox from "./components/ComponentSandbox.vue";
+import DashboardShowcase from "./components/DashboardShowcase.vue";
 import ThemeGenerator from "./components/ThemeGenerator.vue";
 
 export default {
@@ -28,6 +29,7 @@ export default {
   },
   enhanceApp({ app }) {
     app.component("ComponentSandbox", ComponentSandbox);
+    app.component("DashboardShowcase", DashboardShowcase);
     app.component("ThemeGenerator", ThemeGenerator);
   }
 } satisfies Theme;

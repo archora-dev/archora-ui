@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: "Archora UI"
-  text: "Organic Flow"
-  tagline: "A Vue 3 design system for vivid, modern professional interfaces."
+  text: "Dark-first dashboards"
+  tagline: "A dense, calm Vue 3 component library for dashboards and internal tools."
   actions:
     - theme: brand
       text: Get Started
@@ -13,27 +13,28 @@ hero:
       text: Browse Components
       link: /components/
     - theme: alt
-      text: Open Sandbox
-      link: /components/button
+      text: GitHub
+      link: https://github.com/archora-dev/archora-ui
 
 features:
-  - title: Organic Style
-    details: Soft forms and fluid motion replace rigid frames.
-    icon: 🌿
-  - title: Glass Surfaces
-    details: Layered blur and depth create a polished product feel.
-    icon: ✨
-  - title: Vue 3 + TS
-    details: Built on a modern stack with TypeScript and the Composition API.
-    icon: ⚡
-  - title: Accessibility
-    details: Components are designed with WAI-ARIA patterns and usability in mind.
+  - title: Dark-first, light tuned
+    details: Both themes shipped and verified — dark is the default, not an afterthought.
+    icon: 🌑
+  - title: Dense by default
+    details: Data tables, virtual scrolling, filters and overlays — primitives for tools, not landing pages.
+    icon: 📊
+  - title: Token theming
+    details: A few --arch-color-* base colors per data-theme; the rest derives via color-mix, SSR-safe at runtime.
+    icon: 🎚️
+  - title: Small & accessible
+    details: Side-effect-free ESM (~0.6 kB per component, brotli) with axe-checked interactive components.
     icon: ♿
 ---
 
-<style ripple>
-.vp-home {
-  background: radial-gradient(circle at top left, rgba(139, 92, 246, 0.1), transparent 40%),
-              radial-gradient(circle at bottom right, rgba(34, 211, 238, 0.1), transparent 40%);
-}
-</style>
+## A real screen, built from the kit
+
+A dense observability view composed entirely of Archora components — stats, a
+keyed data table with status badges and risk scores, and an event timeline.
+Toggle the theme in the top bar to see dark and light.
+
+<DashboardShowcase />
