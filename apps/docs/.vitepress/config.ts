@@ -3,7 +3,7 @@ import { defineConfig } from "vitepress";
 
 export default defineConfig({
   title: "Archora UI",
-  description: "An organic flow design system for Vue 3.",
+  description: "Dark-first Vue 3 component library for dense dashboards and internal tools.",
   vite: {
     resolve: {
       alias: {

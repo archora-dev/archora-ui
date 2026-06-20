@@ -1,5 +1,5 @@
 export const colors = {
-  // Base structural shades: deep near-blacks with a blue cast.
+  // Структурные оттенки: тёмно-синий базис.
   slate: {
     50: "#f8fafc",
     100: "#f1f5f9",
@@ -10,10 +10,10 @@ export const colors = {
     600: "#475569",
     700: "#334155",
     800: "#1e293b",
-    900: "#0b111e", // Deeper
-    950: "#04070d" // Near-space black
+    900: "#0b111e",
+    950: "#04070d"
   },
-  // Primary accent: electric violet.
+  // Основной акцент: фиолетовый.
   violet: {
     300: "#c4b5fd",
     400: "#a78bfa",
@@ -21,7 +21,7 @@ export const colors = {
     600: "#7c3aed",
     700: "#6d28d9"
   },
-  // Secondary accent: neon cyan.
+  // Вторичный акцент: голубой.
   cyan: {
     300: "#67e8f9",
     400: "#22d3ee",
@@ -29,7 +29,7 @@ export const colors = {
     600: "#0891b2",
     700: "#0e7490"
   },
-  // Status colors with vivid organic saturation.
+  // Статусные цвета.
   red: {
     400: "#f87171",
     500: "#ef4444",
@@ -44,10 +44,5 @@ export const colors = {
     400: "#34d399",
     500: "#10b981",
     600: "#059669"
-  },
-  // Dedicated glow shades.
-  glow: {
-    violet: "rgba(139, 92, 246, 0.5)",
-    cyan: "rgba(34, 211, 238, 0.5)"
   }
 } as const;

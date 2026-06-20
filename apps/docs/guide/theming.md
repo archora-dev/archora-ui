@@ -1,107 +1,110 @@
 # Theming
 
-Archora UI is built for dark interfaces first, but it supports light and custom themes through CSS variables. Set the `data-theme` attribute on the root `html` element to choose a theme.
+Archora UI is dark-first and themed entirely through CSS custom properties. A
+theme is the **minimal set of base colors** scoped to a `data-theme` name. The
+derived tokens — surfaces, muted text, borders, and `primary` hover/active/glow —
+are computed from that base with `color-mix`, so you don't hand-pick 25 values.
 
-Supported values:
-
-- `dark`
-- `light`
-- `system`
-- any custom theme name, such as `brand`
+Switch themes with the `useTheme` composable:
 
 ```ts
 import { useTheme } from "@archora/ui";
 
 const { setTheme } = useTheme();
 
-// Use the system preference
-setTheme("system");
-
-// Use a custom theme
-setTheme("brand");
+setTheme("system"); // follow the OS preference
+setTheme("light");
+setTheme("brand"); // any custom theme name
 ```
 
-`useTheme` stores the user preference in `localStorage`. Built-in themes resolve to `data-theme="dark"` or `data-theme="light"`. Custom themes are written directly to `data-theme`, so `setTheme("brand")` applies `data-theme="brand"`.
+`useTheme` stores the preference in `localStorage`. Built-in themes resolve to
+`data-theme="dark"` or `data-theme="light"`; custom names are written directly,
+so `setTheme("brand")` applies `data-theme="brand"`.
 
-## Custom Palette
+## Theme generator
 
-Define custom themes after importing `@archora/ui/styles.css`. Scope them to a `data-theme` selector and override the semantic variables used by components.
+Pick four colors and copy a ready-to-paste theme. The preview uses real
+components, and the text color on `primary` is derived by WCAG contrast.
+
+<ThemeGenerator />
+
+## Custom theme (CSS)
+
+Define a theme after importing `@archora/ui/styles.css`. Set the base colors and
+let the rest derive:
 
 ```css
 [data-theme="brand"] {
-  color-scheme: dark;
+  color-scheme: dark; /* switches native controls and scrollbars */
 
   --arch-color-bg: #080b12;
-  --arch-color-bg-subtle: #101827;
-  --arch-color-bg-elevated: #131c2e;
-  --arch-color-surface: #131c2e;
-  --arch-color-surface-2: #101827;
-
   --arch-color-fg: #f8fafc;
-  --arch-color-fg-muted: #a9b4c7;
-  --arch-color-fg-subtle: #748199;
-  --arch-color-text-primary: var(--arch-color-fg);
-  --arch-color-text-secondary: var(--arch-color-fg-muted);
-  --arch-color-text-muted: var(--arch-color-fg-muted);
-  --arch-color-text-subtle: var(--arch-color-fg-subtle);
-
   --arch-color-border: #243044;
-  --arch-color-border-strong: #40506a;
-
   --arch-color-primary: #8b5cf6;
-  --arch-color-primary-fg: #ffffff;
-  --arch-color-primary-glow: rgb(139 92 246 / 0.34);
-
   --arch-color-accent: #22d3ee;
-  --arch-color-accent-fg: #041016;
-  --arch-color-accent-glow: rgb(34 211 238 / 0.28);
-
-  --arch-color-success: #22c55e;
-  --arch-color-success-fg: #ffffff;
-  --arch-color-warning: #f59e0b;
-  --arch-color-warning-fg: #111827;
-  --arch-color-danger: #fb7185;
-  --arch-color-danger-fg: #ffffff;
-  --arch-color-info: #38bdf8;
-  --arch-color-info-fg: #07101d;
-
-  --arch-glass-bg: var(--arch-color-bg-elevated);
-  --arch-glass-border: var(--arch-color-border);
 }
 ```
 
-## Theme Contract
+Any derived token can still be overridden explicitly when you need fine control
+(for example, hand-tuned surfaces).
 
-The color contract is semantic, not component-specific. Components read these variables:
+## Theming at runtime
 
-| Variable                                           | Purpose                                              |
-| :------------------------------------------------- | :--------------------------------------------------- |
-| `--arch-color-bg`                                  | Page and app background.                             |
-| `--arch-color-bg-subtle`                           | Muted panels, hover states, and secondary fills.     |
-| `--arch-color-bg-elevated`                         | Cards, popovers, inputs, and raised surfaces.        |
-| `--arch-color-fg`                                  | Primary text and icons.                              |
-| `--arch-color-fg-muted`                            | Secondary text and inactive icons.                   |
-| `--arch-color-fg-subtle`                           | Low-emphasis labels and helper text.                 |
-| `--arch-color-border`                              | Default component borders.                           |
-| `--arch-color-border-strong`                       | Strong borders and active outlines.                  |
-| `--arch-color-primary` / `--arch-color-primary-fg` | Primary actions.                                     |
-| `--arch-color-accent` / `--arch-color-accent-fg`   | Focused controls, selected dates, and accent states. |
-| `--arch-color-success` / `--arch-color-success-fg` | Success states.                                      |
-| `--arch-color-warning` / `--arch-color-warning-fg` | Warning states.                                      |
-| `--arch-color-danger` / `--arch-color-danger-fg`   | Danger and destructive states.                       |
-| `--arch-color-info` / `--arch-color-info-fg`       | Informational states.                                |
+Register a theme from JavaScript. `defineTheme` injects the rule and derives a
+readable `primary` text color by contrast:
 
-Set foreground variables with enough contrast for their paired background. For example, `--arch-color-primary-fg` must be readable on `--arch-color-primary`.
+```ts
+import { defineTheme, setAccent, useTheme } from "@archora/ui";
 
-## Non-Color Tokens
+defineTheme("brand", {
+  bg: "#080b12",
+  fg: "#f8fafc",
+  primary: "#8b5cf6",
+  accent: "#22d3ee"
+});
 
-You can also override shape, elevation, and motion tokens in the same theme scope:
+useTheme().setTheme("brand");
+
+// Recolor the current theme's accent on the fly:
+setAccent("#22d3ee");
+```
+
+`defineTheme` is SSR-safe: with no `document` it skips DOM work and returns the
+CSS string. Use `buildThemeCss(name, colors)` to render the rule during server
+rendering, and `readableForeground(color)` to pick accessible text colors
+yourself.
+
+## Theme contract
+
+The contract is semantic, not component-specific. You set the **base** tokens;
+the **derived** tokens follow automatically but remain overridable.
+
+| Variable                                             | Kind    | Purpose                                        |
+| :--------------------------------------------------- | :------ | :--------------------------------------------- |
+| `--arch-color-bg`                                    | base    | Page and app background.                       |
+| `--arch-color-fg`                                    | base    | Primary text and icons.                        |
+| `--arch-color-border`                                | base    | Default component borders.                     |
+| `--arch-color-primary` / `--arch-color-primary-fg`   | base    | Primary actions (`-fg` derives by contrast).   |
+| `--arch-color-accent` / `--arch-color-accent-fg`     | base    | Accent states (`-fg` derives by contrast).     |
+| `--arch-color-danger` / `-fg`                        | base    | Danger and destructive states.                 |
+| `--arch-color-success` / `-fg`                       | base    | Success states.                                |
+| `--arch-color-warning` / `-fg`                       | base    | Warning states.                                |
+| `--arch-color-info` / `-fg`                          | base    | Informational states.                          |
+| `--arch-color-bg-subtle`                             | derived | Muted panels, hover fills, secondary surfaces. |
+| `--arch-color-bg-elevated`                           | derived | Cards, popovers, inputs, raised surfaces.      |
+| `--arch-color-fg-muted` / `--arch-color-fg-subtle`   | derived | Secondary and low-emphasis text.               |
+| `--arch-color-border-strong`                         | derived | Strong borders and active outlines.            |
+| `--arch-color-primary-hover` / `-active` / `-subtle` | derived | Primary interaction states.                    |
+| `--arch-color-primary-glow`                          | derived | Focus glow and accent shadows.                 |
+
+## Non-color tokens
+
+Override shape, elevation, and motion tokens in the same scope:
 
 ```css
 [data-theme="brand"] {
   --arch-radius-md: 12px;
   --arch-radius-lg: 16px;
-  --arch-shadow-focus: 0 0 0 2px var(--arch-color-bg), 0 0 0 4px var(--arch-color-accent);
   --arch-duration-normal: 180ms;
 }
 ```

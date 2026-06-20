@@ -1,8 +1,9 @@
 .arch-button {
   --arch-button-bg: var(--arch-color-primary);
+  --arch-button-bg-hover: var(--arch-color-primary-hover);
+  --arch-button-bg-active: var(--arch-color-primary-active);
   --arch-button-border: transparent;
   --arch-button-color: var(--arch-color-primary-fg);
-  --arch-button-glow: var(--arch-color-primary-glow);
 
   position: relative;
   display: inline-flex;
@@ -12,7 +13,7 @@
   width: fit-content;
   min-width: max-content;
   border: 1px solid var(--arch-button-border);
-  border-radius: var(--arch-button-radius, var(--arch-radius-full));
+  border-radius: var(--arch-button-radius, var(--arch-radius-md));
   background: var(--arch-button-bg);
   color: var(--arch-button-color);
   font-weight: 500;
@@ -23,21 +24,16 @@
   user-select: none;
   vertical-align: middle;
   cursor: pointer;
-  box-shadow:
-    var(--arch-button-shadow, none),
-    inset 0 1px 0 color-mix(in srgb, var(--arch-color-fg), transparent 90%);
   transition:
-    background-color var(--arch-duration-normal) var(--arch-ease-emphasized),
-    border-color var(--arch-duration-normal) var(--arch-ease-emphasized),
-    color var(--arch-duration-normal) var(--arch-ease-emphasized),
-    box-shadow var(--arch-duration-normal) var(--arch-ease-emphasized),
-    transform var(--arch-duration-normal) var(--arch-ease-emphasized),
-    filter var(--arch-duration-normal) var(--arch-ease-emphasized);
+    background-color var(--arch-duration-fast) var(--arch-ease-standard),
+    border-color var(--arch-duration-fast) var(--arch-ease-standard),
+    color var(--arch-duration-fast) var(--arch-ease-standard),
+    box-shadow var(--arch-duration-fast) var(--arch-ease-standard);
 }
 
 .arch-button:focus-visible {
   outline: 0;
-  box-shadow: var(--arch-shadow-focus), var(--arch-button-shadow, none);
+  box-shadow: var(--arch-shadow-focus);
 }
 
 .arch-button:disabled,
@@ -51,17 +47,12 @@
 }
 
 .arch-button:hover:not(:disabled, .arch-button--loading) {
-  transform: scale(1.02);
-  filter: brightness(1.1);
-  box-shadow:
-    var(--arch-button-shadow, none),
-    0 0 15px var(--arch-button-glow);
+  background: var(--arch-button-bg-hover);
+  border-color: var(--arch-button-border-hover, var(--arch-button-border));
 }
 
 .arch-button:active:not(:disabled, .arch-button--loading) {
-  transform: scale(0.96);
-  filter: brightness(0.95);
-  transition-duration: var(--arch-duration-fast);
+  background: var(--arch-button-bg-active);
 }
 
 .arch-button--block {
@@ -111,40 +102,52 @@
 }
 
 .arch-button--primary {
-  --arch-button-bg: linear-gradient(
-    135deg,
-    var(--arch-color-primary),
-    color-mix(in srgb, var(--arch-color-primary), var(--arch-color-accent) 20%)
-  );
+  --arch-button-bg: var(--arch-color-primary);
+  --arch-button-bg-hover: var(--arch-color-primary-hover);
+  --arch-button-bg-active: var(--arch-color-primary-active);
   --arch-button-color: var(--arch-color-primary-fg);
-  --arch-button-shadow: 0 8px 20px -4px var(--arch-color-primary-glow);
 }
 
 .arch-button--secondary {
   --arch-button-bg: var(--arch-color-bg-subtle);
+  --arch-button-bg-hover: color-mix(in srgb, var(--arch-color-bg-subtle), var(--arch-color-fg) 6%);
+  --arch-button-bg-active: color-mix(
+    in srgb,
+    var(--arch-color-bg-subtle),
+    var(--arch-color-fg) 10%
+  );
   --arch-button-border: var(--arch-color-border);
+  --arch-button-border-hover: var(--arch-color-border-strong);
   --arch-button-color: var(--arch-color-fg);
-  --arch-button-glow: color-mix(in srgb, var(--arch-color-fg), transparent 92%);
-
-  backdrop-filter: blur(var(--arch-blur-md));
 }
 
 .arch-button--ghost {
   --arch-button-bg: transparent;
+  --arch-button-bg-hover: var(--arch-color-bg-subtle);
+  --arch-button-bg-active: color-mix(in srgb, var(--arch-color-bg-subtle), var(--arch-color-fg) 6%);
   --arch-button-border: transparent;
   --arch-button-color: var(--arch-color-fg);
-  --arch-button-glow: var(--arch-color-primary-glow);
-}
-
-.arch-button--ghost:hover:not(:disabled, .arch-button--loading) {
-  background: var(--arch-color-bg-subtle);
-  transform: translateY(-1px);
 }
 
 .arch-button--danger {
   --arch-button-bg: var(--arch-color-danger);
+  --arch-button-bg-hover: color-mix(in srgb, var(--arch-color-danger), var(--arch-color-fg) 12%);
+  --arch-button-bg-active: color-mix(in srgb, var(--arch-color-danger), var(--arch-color-bg) 14%);
   --arch-button-color: var(--arch-color-danger-fg);
-  --arch-button-glow: color-mix(in srgb, var(--arch-color-danger), transparent 70%);
+}
+
+.arch-button--success {
+  --arch-button-bg: var(--arch-color-success);
+  --arch-button-bg-hover: color-mix(in srgb, var(--arch-color-success), var(--arch-color-fg) 12%);
+  --arch-button-bg-active: color-mix(in srgb, var(--arch-color-success), var(--arch-color-bg) 14%);
+  --arch-button-color: var(--arch-color-success-fg);
+}
+
+.arch-button--warning {
+  --arch-button-bg: var(--arch-color-warning);
+  --arch-button-bg-hover: color-mix(in srgb, var(--arch-color-warning), var(--arch-color-fg) 12%);
+  --arch-button-bg-active: color-mix(in srgb, var(--arch-color-warning), var(--arch-color-bg) 14%);
+  --arch-button-color: var(--arch-color-warning-fg);
 }
 
 .arch-button__spinner {
@@ -171,7 +174,6 @@
 @media (prefers-reduced-motion: reduce) {
   .arch-button {
     transition: none !important;
-    transform: none !important;
   }
 
   .arch-button__spinner {

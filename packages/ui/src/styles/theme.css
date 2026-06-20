@@ -1,135 +1,147 @@
-:root,
-:root[data-theme="dark"] {
-  color-scheme: dark;
+@layer arch-base, arch-theme;
 
-  /* Archora app styleguide palette: cool tech / Linear-like. */
-  --color-bg: #0a0c10;
-  --color-surface: #11141a;
-  --color-surface-2: #181c25;
-  --color-border: #232834;
-  --color-border-strong: #4a5160;
+/* Контракт темизации.
+   Публичная поверхность кастомизации — переменные --arch-color-*.
+   Чтобы собрать свою тему, задайте минимальный набор (bg, fg, border,
+   primary и статусные цвета) на собственном селекторе [data-theme="name"];
+   производные токены ниже выведутся сами через color-mix.
+   Встроенные dark/light в слое arch-theme доводят нейтрали вручную и
+   побеждают по каскаду, поэтому их вид не зависит от base-слоя. */
+@layer arch-base {
+  :root {
+    color-scheme: dark;
 
-  --color-text: #eef0f5;
-  --color-text-muted: #9aa0b0;
-  --color-text-subtle: #6b7283;
+    /* Минимальный набор — переопределяйте его для своей темы. */
+    --arch-color-bg: #0a0c10;
+    --arch-color-fg: #eef0f5;
+    --arch-color-border: #232834;
+    --arch-color-primary: #7c6dff;
+    --arch-color-accent: #38bdf8;
+    --arch-color-danger: #ff5d6c;
+    --arch-color-success: #22c55e;
+    --arch-color-warning: #ffb454;
+    --arch-color-info: #38bdf8;
 
-  --color-primary: #7c6dff;
-  --color-primary-glow: #a8b5ff;
-  --color-primary-fg: #ffffff;
+    /* Нейтрали выводятся из bg/fg. */
+    --arch-color-bg-elevated: color-mix(in srgb, var(--arch-color-bg), var(--arch-color-fg) 3.5%);
+    --arch-color-bg-subtle: color-mix(in srgb, var(--arch-color-bg), var(--arch-color-fg) 6.5%);
+    --arch-color-surface: var(--arch-color-bg-elevated);
+    --arch-color-surface-2: var(--arch-color-bg-subtle);
+    --arch-color-fg-muted: color-mix(in srgb, var(--arch-color-fg), var(--arch-color-bg) 37%);
+    --arch-color-fg-subtle: color-mix(in srgb, var(--arch-color-fg), var(--arch-color-bg) 56%);
+    --arch-color-text-primary: var(--arch-color-fg);
+    --arch-color-text-secondary: var(--arch-color-fg-muted);
+    --arch-color-text-muted: var(--arch-color-fg-muted);
+    --arch-color-text-subtle: var(--arch-color-fg-subtle);
+    --arch-color-border-strong: color-mix(
+      in srgb,
+      var(--arch-color-border),
+      var(--arch-color-fg) 20%
+    );
 
-  --color-success: #22c55e;
-  --color-warning: #ffb454;
-  --color-danger: #ff5d6c;
-  --color-info: #38bdf8;
+    /* Производные от primary/accent. */
+    --arch-color-primary-fg: #ffffff;
+    --arch-color-primary-hover: color-mix(
+      in srgb,
+      var(--arch-color-primary),
+      var(--arch-color-fg) 12%
+    );
+    --arch-color-primary-active: color-mix(
+      in srgb,
+      var(--arch-color-primary),
+      var(--arch-color-bg) 14%
+    );
+    --arch-color-primary-subtle: color-mix(in srgb, var(--arch-color-primary), transparent 86%);
+    --arch-color-primary-glow: color-mix(in srgb, var(--arch-color-primary), transparent 66%);
+    --arch-color-accent-fg: #07101d;
+    --arch-color-accent-glow: color-mix(in srgb, var(--arch-color-accent), transparent 70%);
+    --arch-color-danger-fg: #ffffff;
+    --arch-color-success-fg: #ffffff;
+    --arch-color-warning-fg: #0a0c10;
+    --arch-color-info-fg: #07101d;
 
-  --elev-1:
-    0 0 0 1px rgb(255 255 255 / 0.04) inset, 0 1px 0 rgb(255 255 255 / 0.05) inset,
-    0 1px 2px rgb(0 0 0 / 0.4);
-  --elev-2:
-    0 0 0 1px rgb(255 255 255 / 0.05) inset, 0 1px 0 rgb(255 255 255 / 0.06) inset,
-    0 1px 2px rgb(0 0 0 / 0.5), 0 8px 24px -8px rgb(0 0 0 / 0.6);
-  --elev-3:
-    0 0 0 1px rgb(255 255 255 / 0.06) inset, 0 1px 0 rgb(255 255 255 / 0.08) inset,
-    0 4px 8px rgb(0 0 0 / 0.5), 0 20px 40px -12px rgb(0 0 0 / 0.7);
+    --arch-glass-bg: var(--arch-color-bg-elevated);
+    --arch-glass-border: var(--arch-color-border);
 
-  --ring-focus: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-primary);
+    /* Высота/тень и кольцо фокуса — структурные токены, дефолты для тёмной темы. */
+    --elev-1:
+      0 0 0 1px rgb(255 255 255 / 0.04) inset, 0 1px 0 rgb(255 255 255 / 0.05) inset,
+      0 1px 2px rgb(0 0 0 / 0.4);
+    --elev-2:
+      0 0 0 1px rgb(255 255 255 / 0.05) inset, 0 1px 0 rgb(255 255 255 / 0.06) inset,
+      0 1px 2px rgb(0 0 0 / 0.5), 0 8px 24px -8px rgb(0 0 0 / 0.6);
+    --elev-3:
+      0 0 0 1px rgb(255 255 255 / 0.06) inset, 0 1px 0 rgb(255 255 255 / 0.08) inset,
+      0 4px 8px rgb(0 0 0 / 0.5), 0 20px 40px -12px rgb(0 0 0 / 0.7);
 
-  --arch-color-bg: var(--color-bg);
-  --arch-color-surface: var(--color-surface);
-  --arch-color-surface-2: var(--color-surface-2);
-  --arch-color-bg-subtle: var(--color-surface-2);
-  --arch-color-bg-elevated: var(--color-surface);
-  --arch-color-fg: var(--color-text);
-  --arch-color-fg-muted: var(--color-text-muted);
-  --arch-color-fg-subtle: var(--color-text-subtle);
-  --arch-color-text-primary: var(--color-text);
-  --arch-color-text-secondary: var(--color-text-muted);
-  --arch-color-text-muted: var(--color-text-muted);
-  --arch-color-text-subtle: var(--color-text-subtle);
-  --arch-color-border: var(--color-border);
-  --arch-color-border-strong: var(--color-border-strong);
-  --arch-color-primary: var(--color-primary);
-  --arch-color-primary-fg: var(--color-primary-fg);
-  --arch-color-primary-glow: rgb(124 109 255 / 0.34);
-  --arch-color-accent: var(--color-info);
-  --arch-color-accent-fg: #07101d;
-  --arch-color-accent-glow: rgb(56 189 248 / 0.28);
-  --arch-color-danger: var(--color-danger);
-  --arch-color-danger-fg: #ffffff;
-  --arch-color-success: var(--color-success);
-  --arch-color-success-fg: #ffffff;
-  --arch-color-warning: var(--color-warning);
-  --arch-color-warning-fg: #0a0c10;
-  --arch-color-info: var(--color-info);
-  --arch-color-info-fg: #07101d;
-
-  --arch-glass-bg: var(--color-surface);
-  --arch-glass-border: var(--color-border);
+    --ring-focus: 0 0 0 2px var(--arch-color-bg), 0 0 0 4px var(--arch-color-primary);
+  }
 }
 
-:root[data-theme="light"] {
-  color-scheme: light;
+@layer arch-theme {
+  /* Встроенная тёмная: выверенные нейтрали поверх base-слоя. */
+  :root,
+  :root[data-theme="dark"] {
+    color-scheme: dark;
 
-  --color-bg: #fafbfc;
-  --color-surface: #ffffff;
-  --color-surface-2: #f4f5f8;
-  --color-border: #e3e5eb;
-  --color-border-strong: #a8acb8;
+    --arch-color-bg-elevated: #11141a;
+    --arch-color-bg-subtle: #181c25;
+    --arch-color-surface: #11141a;
+    --arch-color-surface-2: #181c25;
+    --arch-color-fg-muted: #9aa0b0;
+    --arch-color-fg-subtle: #6b7283;
+    --arch-color-border-strong: #4a5160;
+    --arch-color-primary-glow: rgb(124 109 255 / 0.34);
+    --arch-color-accent-glow: rgb(56 189 248 / 0.28);
+  }
 
-  --color-text: #0f1115;
-  --color-text-muted: #4a4f5b;
-  --color-text-subtle: #8a8f9e;
+  :root[data-theme="light"] {
+    color-scheme: light;
 
-  --color-primary: #7c6dff;
-  --color-primary-glow: #a8b5ff;
-  --color-primary-fg: #ffffff;
+    /* Минимальный набор светлой темы. */
+    --arch-color-bg: #fafbfc;
+    --arch-color-fg: #0f1115;
+    --arch-color-border: #e3e5eb;
+    --arch-color-primary: #7c6dff;
+    --arch-color-accent: #0284c7;
+    --arch-color-danger: #ff5d6c;
+    --arch-color-success: #16a34a;
+    --arch-color-warning: #ffb454;
+    --arch-color-info: #0284c7;
 
-  --color-success: #16a34a;
-  --color-warning: #ffb454;
-  --color-danger: #ff5d6c;
-  --color-info: #0284c7;
+    /* Выверенные нейтрали светлой темы. */
+    --arch-color-bg-elevated: #ffffff;
+    --arch-color-bg-subtle: #f4f5f8;
+    --arch-color-surface: #ffffff;
+    --arch-color-surface-2: #f4f5f8;
+    --arch-color-fg-muted: #4a4f5b;
+    --arch-color-fg-subtle: #8a8f9e;
+    --arch-color-border-strong: #a8acb8;
 
-  --elev-1:
-    0 0 0 1px rgb(15 17 21 / 0.06) inset, 0 1px 0 rgb(255 255 255 / 0.6) inset,
-    0 1px 2px rgb(15 17 21 / 0.04);
-  --elev-2:
-    0 0 0 1px rgb(15 17 21 / 0.07) inset, 0 1px 0 rgb(255 255 255 / 0.7) inset,
-    0 1px 2px rgb(15 17 21 / 0.05), 0 8px 24px -8px rgb(15 17 21 / 0.08);
-  --elev-3:
-    0 0 0 1px rgb(15 17 21 / 0.08) inset, 0 1px 0 rgb(255 255 255 / 0.8) inset,
-    0 4px 8px rgb(15 17 21 / 0.08), 0 20px 40px -12px rgb(15 17 21 / 0.12);
+    --arch-color-primary-glow: rgb(124 109 255 / 0.2);
 
-  --ring-focus: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-primary);
+    /* В светлой теме active должен темнеть: базовая формула в arch-base
+       смешивает с bg (светлым), поэтому переопределяем в сторону fg. */
+    --arch-color-primary-active: color-mix(
+      in srgb,
+      var(--arch-color-primary),
+      var(--arch-color-fg) 14%
+    );
+    --arch-color-accent-fg: #ffffff;
+    --arch-color-accent-glow: rgb(2 132 199 / 0.2);
+    --arch-color-warning-fg: #0f1115;
+    --arch-color-info-fg: #ffffff;
 
-  --arch-color-bg: var(--color-bg);
-  --arch-color-surface: var(--color-surface);
-  --arch-color-surface-2: var(--color-surface-2);
-  --arch-color-bg-subtle: var(--color-surface-2);
-  --arch-color-bg-elevated: var(--color-surface);
-  --arch-color-fg: var(--color-text);
-  --arch-color-fg-muted: var(--color-text-muted);
-  --arch-color-fg-subtle: var(--color-text-subtle);
-  --arch-color-text-primary: var(--color-text);
-  --arch-color-text-secondary: var(--color-text-muted);
-  --arch-color-text-muted: var(--color-text-muted);
-  --arch-color-text-subtle: var(--color-text-subtle);
-  --arch-color-border: var(--color-border);
-  --arch-color-border-strong: var(--color-border-strong);
-  --arch-color-primary: var(--color-primary);
-  --arch-color-primary-fg: var(--color-primary-fg);
-  --arch-color-primary-glow: rgb(124 109 255 / 0.2);
-  --arch-color-accent: var(--color-info);
-  --arch-color-accent-fg: #ffffff;
-  --arch-color-accent-glow: rgb(2 132 199 / 0.2);
-  --arch-color-danger: var(--color-danger);
-  --arch-color-danger-fg: #ffffff;
-  --arch-color-success: var(--color-success);
-  --arch-color-success-fg: #ffffff;
-  --arch-color-warning: var(--color-warning);
-  --arch-color-warning-fg: #0f1115;
-  --arch-color-info: var(--color-info);
-  --arch-color-info-fg: #ffffff;
+    --elev-1:
+      0 0 0 1px rgb(15 17 21 / 0.06) inset, 0 1px 0 rgb(255 255 255 / 0.6) inset,
+      0 1px 2px rgb(15 17 21 / 0.04);
+    --elev-2:
+      0 0 0 1px rgb(15 17 21 / 0.07) inset, 0 1px 0 rgb(255 255 255 / 0.7) inset,
+      0 1px 2px rgb(15 17 21 / 0.05), 0 8px 24px -8px rgb(15 17 21 / 0.08);
+    --elev-3:
+      0 0 0 1px rgb(15 17 21 / 0.08) inset, 0 1px 0 rgb(255 255 255 / 0.8) inset,
+      0 4px 8px rgb(15 17 21 / 0.08), 0 20px 40px -12px rgb(15 17 21 / 0.12);
 
-  --arch-glass-bg: var(--color-surface);
-  --arch-glass-border: var(--color-border);
+    --ring-focus: 0 0 0 2px var(--arch-color-bg), 0 0 0 4px var(--arch-color-primary);
+  }
 }

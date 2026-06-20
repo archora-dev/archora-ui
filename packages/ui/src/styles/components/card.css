@@ -13,21 +13,17 @@
   color: var(--arch-color-fg);
   box-shadow: var(--arch-card-shadow);
   transition:
-    transform var(--arch-duration-normal) var(--arch-ease-out),
-    box-shadow var(--arch-duration-normal) var(--arch-ease-out),
-    border-color var(--arch-duration-normal) var(--arch-ease-out);
+    box-shadow var(--arch-duration-normal) var(--arch-ease-standard),
+    border-color var(--arch-duration-normal) var(--arch-ease-standard);
 }
 
 .arch-card--elevated {
   --arch-card-bg: var(--arch-glass-bg);
   --arch-card-border: var(--arch-glass-border);
   --arch-card-shadow: var(--arch-shadow-lg);
-
-  backdrop-filter: blur(var(--arch-blur-lg));
 }
 
 .arch-card--interactive:hover {
-  transform: translateY(-4px) scale(1.01);
   box-shadow: var(--arch-shadow-lg);
   border-color: var(--arch-color-border-strong);
 }
@@ -49,6 +45,7 @@
   --arch-card-shadow: none;
 }
 
+/* Вариант с настоящим стеклом (полупрозрачный фон) — blur функционален. */
 .arch-card--surface-glass {
   --arch-card-bg: var(--arch-glass-bg);
   --arch-card-border: var(--arch-glass-border);

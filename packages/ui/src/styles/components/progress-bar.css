@@ -11,8 +11,7 @@
 
 .arch-progress-bar__fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--arch-color-primary), var(--arch-color-accent));
+  background: var(--arch-color-primary);
   border-radius: inherit;
-  transition: width var(--arch-duration-slow) var(--arch-ease-emphasized);
-  box-shadow: 0 0 10px var(--arch-color-primary-glow);
+  transition: width var(--arch-duration-slow) var(--arch-ease-standard);
 }

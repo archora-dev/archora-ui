@@ -11,7 +11,6 @@
   position: fixed;
   inset: 0;
   background: rgb(2 6 23 / 0.72);
-  backdrop-filter: blur(10px);
 }
 
 .arch-dialog__content {
@@ -53,18 +52,28 @@
   min-height: 2.75rem;
   padding: 0 var(--arch-space-5);
   border: 1px solid var(--arch-color-border);
-  border-radius: var(--arch-radius-full);
+  border-radius: var(--arch-radius-md);
   background: var(--arch-color-primary);
-  color: white;
+  color: var(--arch-color-primary-fg);
   font-weight: 500;
   cursor: pointer;
-  transition: all var(--arch-duration-normal);
+  transition:
+    background-color var(--arch-duration-fast) var(--arch-ease-standard),
+    border-color var(--arch-duration-fast) var(--arch-ease-standard),
+    box-shadow var(--arch-duration-fast) var(--arch-ease-standard);
 }
 
 .arch-dialog__trigger:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.1);
-  box-shadow: 0 4px 12px var(--arch-color-primary-glow);
+  background: var(--arch-color-primary-hover);
+}
+
+.arch-dialog__trigger:active {
+  background: var(--arch-color-primary-active);
+}
+
+.arch-dialog__trigger:focus-visible {
+  outline: 0;
+  box-shadow: var(--arch-shadow-focus);
 }
 
 .arch-dialog__header {

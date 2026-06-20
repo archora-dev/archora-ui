@@ -173,3 +173,11 @@ export type {
   ThemeMode,
   ThemePreference
 } from "./composables/useTheme";
+export {
+  buildThemeCss,
+  buildThemeVars,
+  defineTheme,
+  readableForeground,
+  setAccent
+} from "./composables/defineTheme";
+export type { ArchThemeColors } from "./composables/defineTheme";

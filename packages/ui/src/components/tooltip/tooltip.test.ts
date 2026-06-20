@@ -63,7 +63,7 @@ describe("ArchTooltip", () => {
     expect(wrapper.classes()).not.toContain("arch-tooltip--open");
   });
 
-  it("supports placement classes", () => {
+  it("exposes the resolved placement on the tooltip content", async () => {
     const wrapper = mount(ArchTooltip, {
       props: {
         content: "More details",
@@ -74,6 +74,10 @@ describe("ArchTooltip", () => {
       }
     });
 
-    expect(wrapper.classes()).toContain("arch-tooltip--right");
+    await wrapper.get(".arch-tooltip__trigger").trigger("focusin");
+
+    const content = document.body.querySelector(".arch-tooltip__content");
+
+    expect(content?.getAttribute("data-placement")).toBe("right");
   });
 });

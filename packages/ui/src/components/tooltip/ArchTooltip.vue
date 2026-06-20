@@ -30,7 +30,7 @@ function closeOnEscape(event: KeyboardEvent) {
 <template>
   <div
     class="arch-tooltip"
-    :class="[`arch-tooltip--${floatingPlacement}`, { 'arch-tooltip--open': open }]"
+    :class="{ 'arch-tooltip--open': open }"
     style="display: inline-block; position: relative"
   >
     <div
@@ -54,6 +54,7 @@ function closeOnEscape(event: KeyboardEvent) {
         ref="contentRef"
         class="arch-tooltip__content"
         :class="{ 'arch-tooltip__content--open': open }"
+        :data-placement="floatingPlacement"
         role="tooltip"
         :style="floatingStyle"
       >

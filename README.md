@@ -45,28 +45,49 @@ setTheme("system");
 setTheme("brand");
 ```
 
-Custom palettes are regular CSS variables scoped to a theme name:
+### Custom themes
+
+A theme is the minimal set of base colors scoped to a `data-theme` name. The
+derived tokens — surfaces, muted text, borders, `primary` hover/active/glow —
+are computed from that base via `color-mix`, so you don't hand-pick 25 values:
 
 ```css
 [data-theme="brand"] {
-  color-scheme: dark;
+  color-scheme: dark; /* switches native controls and scrollbars */
 
   --arch-color-bg: #080b12;
-  --arch-color-bg-subtle: #101827;
-  --arch-color-bg-elevated: #131c2e;
   --arch-color-fg: #f8fafc;
-  --arch-color-fg-muted: #a9b4c7;
-  --arch-color-fg-subtle: #748199;
   --arch-color-border: #243044;
-  --arch-color-border-strong: #40506a;
   --arch-color-primary: #8b5cf6;
-  --arch-color-primary-fg: #ffffff;
   --arch-color-accent: #22d3ee;
-  --arch-color-accent-fg: #041016;
 }
 ```
 
-See the theming guide for the full color contract and non-color tokens.
+You can still override any derived token explicitly when you need fine control.
+
+### Theming at runtime
+
+Register a theme from JavaScript — `defineTheme` injects the rule and derives a
+readable text color for the primary by WCAG contrast:
+
+```ts
+import { defineTheme, setAccent, useTheme } from "@archora/ui";
+
+defineTheme("brand", {
+  bg: "#080b12",
+  fg: "#f8fafc",
+  primary: "#8b5cf6"
+});
+
+useTheme().setTheme("brand");
+
+// Or just recolor the current theme's accent on the fly:
+setAccent("#22d3ee");
+```
+
+`defineTheme` is SSR-safe (it returns the CSS string and skips DOM work when
+there is no `document`). Use `buildThemeCss(name, colors)` to render the rule
+during server rendering.
 
 ## Workspace
 

@@ -1,6 +1,6 @@
 export const typography = {
   fontFamily:
-    'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    '"Inter Variable", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
   monoFamily: '"JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace',
   size: {
     xs: "0.75rem",
@@ -10,7 +10,7 @@ export const typography = {
     xl: "1.25rem"
   },
   lineHeight: {
-    tight: "1.2",
+    tight: "1.1",
     normal: "1.5",
     relaxed: "1.7"
   }

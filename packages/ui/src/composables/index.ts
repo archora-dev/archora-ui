@@ -20,3 +20,11 @@ export type {
   ThemeMode,
   ThemePreference
 } from "./useTheme";
+export {
+  buildThemeCss,
+  buildThemeVars,
+  defineTheme,
+  readableForeground,
+  setAccent
+} from "./defineTheme";
+export type { ArchThemeColors } from "./defineTheme";
