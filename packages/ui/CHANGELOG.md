@@ -1,5 +1,15 @@
 # @archora/ui
 
+## 0.2.0
+
+### Minor Changes
+
+- Dark/light polish, accessibility coverage, and a bundle budget.
+  - **Breaking:** removed duplicate CSS custom properties from `styles.css` — `--arch-shadow-xl` (use `--arch-shadow-lg`) and `--arch-ease-emphasized` (use `--arch-ease-standard`).
+  - Fix: the light theme no longer shows dark-only hardcoded overlays — tree view, accordion, skeleton shimmer, and input insets are now theme-aware.
+  - Fix: `ArchToast` renders a `div` carrying its `status`/`alert` role to satisfy `aria-allowed-role`.
+  - Accessibility: interactive components are now checked against `axe-core` in the test suite and CI.
+
 ## 0.1.0
 
 ### Minor Changes

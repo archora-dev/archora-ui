@@ -1,6 +1,6 @@
 {
   "name": "@archora/ui",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "type": "module",
   "description": "Dark-first Vue 3 component library for dashboards and internal tools.",
   "license": "MIT",
